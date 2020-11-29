@@ -1,70 +1,88 @@
+#include "Characters.h"
 #include <iostream>
+#include <memory>
 #include <string>
+
+using namespace std;
 
 int main()
 {
-    int HP = 10;
     char init_status;
-    std::string action;
+    string action;
+    unique_ptr<BaseCharacter> player; 
 
     /*Initailize*/
-    std::cout << "***********************************\n";
-    std::cout << "*      Welcome to RPG game!!!     *\n";
-    std::cout << "*  For playing New Game, enter n. *\n";
-    std::cout << "*  For playing Old Game, enter o. *\n";
-    std::cout << "*  If you want to Exit, enter q.  *\n";
-    std::cout << "***********************************\n";
+    cout << "***********************************\n";
+    cout << "*      Welcome to RPG game!!!     *\n";
+    cout << "*  For playing New Game, enter n. *\n";
+    cout << "*  For playing Old Game, enter o. *\n";
+    cout << "*  If you want to Exit, enter q.  *\n";
+    cout << "***********************************\n";
 
-    std::cin >> init_status;
 
     while (true) {
+        cin >> init_status;
         if (init_status == 'o') {
             //load
             break;
         } else if (init_status == 'n') {
-            //new record
+            player = make_unique<BaseCharacter>(BaseCharacter("P1"));
             break;
         } else if (init_status == 'q') {
-            HP = -1; // would skip game logic
-            break;
+            goto End; // would skip game logic
         } else
-            std::cout << "Invalid Input! Please Try again!\n";
+            cout << "Invalid Input! Please Try again!\n";
     }
 
-    std::cout << "****************************************\n";
-    std::cout << "*            Game Instructions         *\n";
-    std::cout << "*          To fight, enter fight.      *\n";
-    std::cout << "*  To show current status, enter show. *\n";
-    std::cout << "*  To save current status, enter save. *\n";
-    std::cout << "*      If you want to Exit, enter q.   *\n";
-    std::cout << "****************************************\n";
+    cout << "****************************************\n";
+    cout << "*            Game Instructions         *\n";
+    cout << "*          To fight, enter fight.      *\n";
+    cout << "*  To show current status, enter show. *\n";
+    cout << "*  To save current status, enter save. *\n";
+    cout << "*      If you want to Exit, enter q.   *\n";
+    cout << "****************************************\n";
 
     /*Playing game*/
-    while (HP > 0) {
-        std::cin >> action;
+    while (player->HP > 0) {
+        cin >> action;
         if (action == "fight") {
-            HP -= 2;
-            std::cout << "You've been attacked, losed 2 HP!\n";
+            cout << "A Gobelin appears\n";
+            unique_ptr<BaseCharacter> enemy = make_unique<BaseCharacter>(BaseCharacter("Gobelin", 15));
+            while (true) {
+                //TODO : add playing logic
+                if (!enemy->isAlive()){
+                    string n = enemy->get_name();
+                    cout << "The " << n << " is dead! You win!\n";
+                    break;
+                }
+                if (!player->isAlive()){
+                    cout << "You're defeated!\n";
+                    break;
+                }
+            }
+            continue;
+        } else if (action == "rest"){
+            player->rest();
             continue;
         } else if (action == "show") {
-            std::cout << "Your HP is " << HP << ".\n";
+            player->show_status();
             continue;
         } else if (action == "save") {
-            //save
-            std::cout << "Successfully Saved!\n";
+            //TODO: save
+            cout << "Successfully Saved!\n";
             continue;
         } else if (action == "q") {
-            //autosave
+            //TODO: autosave
             break;
         } else {
-            std::cout << "Invalid Input! Please Try again!\n";
+            cout << "Invalid Input! Please Try again!\n";
         }
     }
 
-    if (HP == 0) {
-        std::cout << "You died!\n";
-        //save ????
+    if (player->HP == 0) {
+        cout << "You died!\n";
     }
 
+End:
     return 0;
 }
