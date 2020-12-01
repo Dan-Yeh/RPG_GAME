@@ -1,5 +1,6 @@
 #include "Characters.h"
 #include <iostream>
+#include <fstream>
 #include <memory>
 #include <string>
 
@@ -23,10 +24,16 @@ int main()
     while (true) {
         cin >> init_status;
         if (init_status == 'o') {
-            //load
+            BaseCharacter dummy;
+            ifstream in("log.txt");
+            in >> dummy;
+            player = make_unique<BaseCharacter>(dummy);
             break;
         } else if (init_status == 'n') {
-            player = make_unique<BaseCharacter>(BaseCharacter("P1"));
+            string character_name;
+            cout << "Please input a character name: " << endl;
+            cin >> character_name;
+            player = make_unique<BaseCharacter>(character_name);
             break;
         } else if (init_status == 'q') {
             goto End; // would skip game logic
@@ -47,7 +54,7 @@ int main()
         cin >> action;
         if (action == "fight") {
             cout << "A Gobelin appears\n";
-            unique_ptr<BaseCharacter> enemy = make_unique<BaseCharacter>(BaseCharacter("Gobelin", 15));
+            unique_ptr<BaseCharacter> enemy = make_unique<BaseCharacter>("Gobelin", 15);
             while (true) {
                 //TODO : add playing logic
                 if (!enemy->isAlive()){
@@ -68,11 +75,11 @@ int main()
             player->show_status();
             continue;
         } else if (action == "save") {
-            //TODO: save
+            ofstream out("log.txt");
+            out << *player;
             cout << "Successfully Saved!\n";
             continue;
         } else if (action == "q") {
-            //TODO: autosave
             break;
         } else {
             cout << "Invalid Input! Please Try again!\n";

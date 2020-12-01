@@ -2,6 +2,7 @@
 #define CHARACTERS_H
 
 #include <iostream>
+#include <memory>
 #include <string>
 
 using namespace std;
@@ -17,42 +18,15 @@ public:
     int HP;
     int in_game_day;
 
-    BaseCharacter(string n, int maxhp = 20, int attck_pts = 5, int def_pts = 3, int hp = -1, int ingame_day = 0)
-    {
-        name = n;
-        max_HP = maxhp;
-        if (hp >= 0)
-            HP = hp;
-        else
-            HP = max_HP;
-        attack_pts = attck_pts;
-        defense_pts = def_pts;
-        in_game_day = ingame_day;
-    }
+    BaseCharacter(string n="default", int maxhp = 20, int attck_pts = 5, int def_pts = 3, int hp = -1, int ingame_day = 0);
+    string get_name(void);
+    void show_status(void);
+    void rest(void);
+    bool isAlive(void);
 
-    string get_name(void){
-        return name;
-    }
 
-    void show_status(void)
-    {
-        cout << "Name: " << name << endl;
-        cout << "Current HP is " << HP << endl;
-        cout << "Attack points: " << attack_pts << endl;
-        cout << "Defense points: " << defense_pts << endl;
-    }
-
-    void rest(void)
-    {
-        HP = max_HP;
-        in_game_day++;
-        cout << "Rest to restore HP!" << endl;
-    }
-
-    bool isAlive(void)
-    {
-        return (HP > 0);
-    }
+    friend ostream& operator <<(ostream& out, BaseCharacter& player);
+    friend istream& operator >>(istream& in, BaseCharacter& player);
 };
 
 #endif
