@@ -2,7 +2,6 @@
 #define CHARACTERS_H
 
 #include <iostream>
-#include <memory>
 #include <string>
 
 using namespace std;
@@ -23,7 +22,6 @@ public:
     void show_status(void);
     void rest(void);
     bool isAlive(void);
-
 
     friend ostream& operator <<(ostream& out, BaseCharacter& player);
     friend istream& operator >>(istream& in, BaseCharacter& player);
