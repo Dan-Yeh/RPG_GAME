@@ -1,6 +1,7 @@
 #ifndef CHARACTERS_H
 #define CHARACTERS_H
 
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -9,15 +10,15 @@ using namespace std;
 class BaseCharacter {
 private:
     string name;
-    int max_HP;
+    unsigned int max_HP;
 
 public:
     int attack_pts;
     int defense_pts;
     int HP;
-    int in_game_day;
 
-    BaseCharacter(string n, int maxhp = 20, int attck_pts = 5, int def_pts = 3, int hp = -1, int ingame_day = 0)
+    BaseCharacter();
+    BaseCharacter(string n, unsigned int maxhp = 20, int attck_pts = 5, int def_pts = 3, int hp = -1)
     {
         name = n;
         max_HP = maxhp;
@@ -27,11 +28,20 @@ public:
             HP = max_HP;
         attack_pts = attck_pts;
         defense_pts = def_pts;
-        in_game_day = ingame_day;
     }
 
-    string get_name(void){
+    BaseCharacter(ifstream file)
+    {
+    }
+
+    string get_name(void)
+    {
         return name;
+    }
+
+    unsigned int get_maxHP(void)
+    {
+        return max_HP;
     }
 
     void show_status(void)
@@ -45,7 +55,6 @@ public:
     void rest(void)
     {
         HP = max_HP;
-        in_game_day++;
         cout << "Rest to restore HP!" << endl;
     }
 
