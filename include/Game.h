@@ -7,7 +7,7 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#define DIR_PATH "./saves/"
+#define DIR_PATH "../saves/"
 
 class Game {
 private:

@@ -1,4 +1,4 @@
-#include "Characters.h"
+#include "../include/Game.h"
 
 BaseCharacter::BaseCharacter(std::string n, unsigned int hp)
 {

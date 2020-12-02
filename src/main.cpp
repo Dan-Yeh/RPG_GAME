@@ -1,5 +1,5 @@
-#include "Characters.h"
-#include "Game.h"
+#include "../include/Characters.h"
+#include "../include/Game.h"
 #include <fstream>
 #include <memory>
 

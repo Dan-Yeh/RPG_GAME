@@ -1,6 +1,5 @@
-#include "Game.h"
-#include "Characters.h"
-#include <memory>
+#include "../include/Characters.h"
+#include "../include/Game.h"
 
 Game::Game(std::string name)
 {
