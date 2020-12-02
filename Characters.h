@@ -17,51 +17,15 @@ public:
     int defense_pts;
     int HP;
 
-    BaseCharacter();
-    BaseCharacter(string n, unsigned int maxhp = 20, int attck_pts = 5, int def_pts = 3, int hp = -1)
-    {
-        name = n;
-        max_HP = maxhp;
-        if (hp >= 0)
-            HP = hp;
-        else
-            HP = max_HP;
-        attack_pts = attck_pts;
-        defense_pts = def_pts;
-    }
+    BaseCharacter(string n = "default", int maxhp = 20, int attck_pts = 5, int def_pts = 3, int hp = -1);
+    string get_name(void);
+    unsigned int get_maxHP(void);
+    void show_status(void);
+    void rest(void);
+    bool isAlive(void);
 
-    BaseCharacter(ifstream file)
-    {
-    }
-
-    string get_name(void)
-    {
-        return name;
-    }
-
-    unsigned int get_maxHP(void)
-    {
-        return max_HP;
-    }
-
-    void show_status(void)
-    {
-        cout << "Name: " << name << endl;
-        cout << "Current HP is " << HP << endl;
-        cout << "Attack points: " << attack_pts << endl;
-        cout << "Defense points: " << defense_pts << endl;
-    }
-
-    void rest(void)
-    {
-        HP = max_HP;
-        cout << "Rest to restore HP!" << endl;
-    }
-
-    bool isAlive(void)
-    {
-        return (HP > 0);
-    }
+    friend ostream& operator<<(ostream& out, BaseCharacter& player);
+    friend istream& operator>>(istream& in, BaseCharacter& player);
 };
 
 #endif
