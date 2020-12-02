@@ -1,10 +1,10 @@
-CC = g++ 
-CFLAGS = --std=c++17
+CXX = g++ 
+CXXFLAGS = --std=c++17 -Wall
 DIR = .
 
 GAME_NAME = RPG_GAME
 
 build: 
-	$(CC) *.cpp -o $(GAME_NAME) $(CFLAGS)
+	$(CXX) *.cpp -o $(GAME_NAME) $(CXXFLAGS)
 clean:
 	rm -rf *.o *.out
