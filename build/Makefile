@@ -1,3 +1,4 @@
+##add memory check /test / debug command
 CXX = g++ 
 CXXFLAGS = --std=c++17 -Wall
 

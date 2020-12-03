@@ -1,3 +1,4 @@
+//TODO: add test
 #include "../include/Characters.h"
 #include "../include/Game.h"
 #include <fstream>
@@ -53,7 +54,10 @@ int main()
             std::cout << "A Gobelin appears\n";
             std::unique_ptr<BaseCharacter> enemy = std::make_unique<BaseCharacter>("Gobelin", 15);
             while (true) {
-                //TODO : add playing logic
+                std::cout << "You've been attack! Lose " << enemy->get_attack_pts() << "hp.\n";
+                std::cout << "Fight back! The Gobelin lose " << game->player->get_attack_pts() << " hp.\n";
+                game->player->sub_HP(enemy->get_attack_pts());
+                enemy->sub_HP(game->player->get_attack_pts());
                 if (!enemy->isAlive()) {
                     std::string n = enemy->get_name();
                     std::cout << "The " << n << " is dead! You win!\n";
@@ -66,10 +70,10 @@ int main()
             }
             continue;
         } else if (action == "rest") {
-            game->player->rest();
+            game->rest();
             continue;
         } else if (action == "show") {
-            game->player->show_status();
+            game->show();
             continue;
         } else if (action == "save") {
             game->save();
@@ -84,7 +88,7 @@ int main()
         }
     }
 
-    if (game->player->get_HP() == 0) {
+    if (!game->player->isAlive()) {
         std::cout << "You died!\n";
     }
 

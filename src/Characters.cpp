@@ -12,8 +12,7 @@ BaseCharacter::BaseCharacter(std::ifstream& file)
         >> HP
         >> max_HP
         >> attack_pts
-        >> defense_pts
-        >> in_game_day;
+        >> defense_pts;
 }
 
 std::string BaseCharacter::get_name(void) { return name; }
@@ -26,8 +25,6 @@ unsigned int BaseCharacter::get_attack_pts(void) { return attack_pts; }
 
 unsigned int BaseCharacter::get_defense_pts(void) { return defense_pts; }
 
-unsigned int BaseCharacter::get_in_game_day(void) { return in_game_day; }
-
 bool BaseCharacter::isAlive(void) { return (HP > 0); }
 
 void BaseCharacter::sub_HP(unsigned int lose)
@@ -38,7 +35,6 @@ void BaseCharacter::sub_HP(unsigned int lose)
 void BaseCharacter::rest(void)
 {
     HP = max_HP;
-    in_game_day++;
     std::cout << "Rest to restore HP!" << std::endl;
 }
 
