@@ -7,7 +7,7 @@ v2
 * v2 of the game features (sprint1 + sprint2)
 * build/Makefile: `make` to build the application , `make clean` to clean
 * Organization: cpp files in src folder, header files in include
-
+* For playing, first type make in build folder, and run ./RPG_GAME executable in main folder.
 
 Features
 ========
