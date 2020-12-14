@@ -15,15 +15,15 @@ BaseCharacter::BaseCharacter(std::ifstream& file)
         >> defense_pts;
 }
 
-const std::string BaseCharacter::get_name(void) { return name; }
+std::string BaseCharacter::get_name(void) const { return name; }
 
-const unsigned int BaseCharacter::get_maxHP(void) { return max_HP; }
+unsigned int BaseCharacter::get_maxHP(void) const { return max_HP; }
 
-const unsigned int BaseCharacter::get_HP(void) { return HP; }
+unsigned int BaseCharacter::get_HP(void) const { return HP; }
 
-const unsigned int BaseCharacter::get_attack_pts(void) { return attack_pts; }
+unsigned int BaseCharacter::get_attack_pts(void) const { return attack_pts; }
 
-const unsigned int BaseCharacter::get_defense_pts(void) { return defense_pts; }
+unsigned int BaseCharacter::get_defense_pts(void) const { return defense_pts; }
 
 bool BaseCharacter::isAlive(void) { return (HP > 0); }
 
