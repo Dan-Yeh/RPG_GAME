@@ -16,11 +16,11 @@ private:
 public:
     BaseCharacter(std::string n = "default", unsigned int hp = 20);
     BaseCharacter(std::ifstream&);
-    std::string get_name(void);
-    unsigned int get_maxHP(void);
-    unsigned int get_HP(void);
-    unsigned int get_attack_pts(void);
-    unsigned int get_defense_pts(void);
+    const std::string get_name(void);
+    const unsigned int get_maxHP(void);
+    const unsigned int get_HP(void);
+    const unsigned int get_attack_pts(void);
+    const unsigned int get_defense_pts(void);
     void sub_HP(unsigned int lose);
     void show_status(void);
     void rest(void);
