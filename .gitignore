@@ -1,0 +1,6 @@
+*.o
+*.exe
+*.txt
+.DS_Store
+RPG_GAME
+saves/
