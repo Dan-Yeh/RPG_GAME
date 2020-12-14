@@ -17,8 +17,8 @@ private:
 public:
     std::unique_ptr<BaseCharacter> player;
 
-    Game();
-    Game(std::string name = "default");
+    Game() = default;
+    Game(std::string name);
     void save(void);
     void load(void);
     void rest(void);
