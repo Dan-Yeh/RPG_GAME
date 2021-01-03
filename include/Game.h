@@ -3,29 +3,22 @@
 #define GAME_H
 
 #include "Characters.h"
-#include <fstream>
-#include <iostream>
-#include <memory>
-#include <string>
-#define DIR_PATH "./saves/"
+#include "Engine.h"
 
 class Game {
 private:
-    std::string file_name;
-    unsigned int in_game_day = { 0 };
+    char init_status;
+    std::string action;
+    Engine engine;
+
+    void menu();
+    void behavior_options();
+    void fight(Engine& engine);
 
 public:
-    std::unique_ptr<BaseCharacter> player;
-
-    Game() = default;
-    Game(std::string name);
-    void save(void);
-    void load(void);
-    void rest(void);
-    void show(void);
-    //unique_ptr could not pass to operator<< for now
-    //friend std::ostream& operator<<(std::ostream& out, BaseCharacter const & player);
-    //friend std::istream& operator>>(std::istream& in, BaseCharacter& player);
+    Game();
+    bool initialization();
+    void game_loop();
 };
 
 #endif

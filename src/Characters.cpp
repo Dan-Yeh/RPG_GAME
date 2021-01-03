@@ -7,7 +7,7 @@ BaseCharacter::BaseCharacter(std::string n, unsigned int hp)
 }
 
 BaseCharacter::BaseCharacter(std::ifstream& file)
-{
+{   
     file >> name
         >> HP
         >> max_HP
