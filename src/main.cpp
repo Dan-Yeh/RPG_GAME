@@ -3,17 +3,12 @@
 #include <fstream>
 #include <memory>
 
-void fight(Game& game);
-
 int main()
 {
     Game game;
-    bool quit_game;
 
-    quit_game = game.initialization();
-    if(quit_game) { return 0;}
+    if (game.initialization() == true) 
+        game.game_loop();
 
-    game.game_loop();
-    
     return 0;
 }

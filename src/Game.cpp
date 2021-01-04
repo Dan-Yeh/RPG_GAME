@@ -33,7 +33,7 @@ void Game::behavior_options()
 
 bool Game::initialization()
 {
-    bool quit = false;
+    bool init = true;
     while (true) {
         std::cin >> init_status;
         if (init_status == 'n') {
@@ -50,19 +50,20 @@ bool Game::initialization()
             engine.load();
             break;
         } else if (init_status == 'q') {
-            quit = true; // would skip game logic
+            init = false; // would skip game logic
+            break;
         } else
             std::cout << "Invalid Input! Please Try again!\n";
     }
 
-    return quit;
+    return init;
 }
 
 void Game::game_loop()
 {
     /*Playing game*/
-    behavior_options();
     while (engine.player->isAlive()) {
+        behavior_options();
         std::cin >> action;
         if (action == "fight") {
             fight(engine);
