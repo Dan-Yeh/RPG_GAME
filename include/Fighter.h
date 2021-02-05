@@ -8,7 +8,9 @@ private:
 
 public:
     Fighter(std::string n = "default", unsigned int hp = 20);
-    std::string get_name(void) const;
+    unsigned int get_attack_pts(void) const override;
+    void gain_experience(void) override;
+    void level_up() override;
 };
 
 #endif

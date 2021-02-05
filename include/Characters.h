@@ -15,16 +15,15 @@ private:
 
 
 public:
-    BaseCharacter(std::string n = "default");
-    virtual ~BaseCharacter(){};
+    BaseCharacter(){};
+    virtual ~BaseCharacter() = 0;
     std::string get_name(void) const;
     unsigned int get_maxHP(void) const;
     unsigned int get_HP(void) const;
-    unsigned int get_attack_pts(void) const;
+    virtual unsigned int get_attack_pts(void) const;
     unsigned int get_defense_pts(void) const;
     void sub_HP(unsigned int lose);
     void show_status(void);
-    void rest(void);
     bool isAlive(void);
 };
 
