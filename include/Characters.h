@@ -8,14 +8,15 @@
 class BaseCharacter {
 private:
     std::string name;
-    unsigned int HP = { 20 };
-    unsigned int max_HP = { 20 };
-    unsigned int attack_pts = { 5 };
-    unsigned int defense_pts = { 3 };
+    unsigned int HP;
+    unsigned int max_HP;
+    unsigned int attack_pts;
+    unsigned int defense_pts;
+
 
 public:
-    BaseCharacter(std::string n = "default", unsigned int hp = 20);
-    BaseCharacter(std::ifstream&);
+    BaseCharacter(std::string n = "default");
+    virtual ~BaseCharacter(){};
     std::string get_name(void) const;
     unsigned int get_maxHP(void) const;
     unsigned int get_HP(void) const;
