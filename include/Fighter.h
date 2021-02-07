@@ -4,13 +4,16 @@
 #include "Trainee.h"
 
 class Fighter: public Trainee {
-private:
-
 public:
-    Fighter(std::string n = "default", unsigned int hp = 20);
+    Fighter(std::string n, unsigned int hp) : Trainee(n, hp){};
+    Fighter(std::ifstream& file) : Trainee(file){};
+
+    // override methods
+    void rest(void) override;
     unsigned int get_attack_pts(void) const override;
-    void gain_experience(void) override;
-    void level_up() override;
+    
+    void gain_experience(void);
+    void level_up();
 };
 
 #endif

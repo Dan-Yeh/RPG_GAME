@@ -1,11 +1,11 @@
-#include "../include/Characters.h"
 #include "../include/Engine.h"
+#include "../include/Trainee.h"
 
 Engine::Engine(std::string name)
 {
     in_game_day = 0;
     file_name = DIR_PATH + name + ".txt";
-    player = std::make_unique<BaseCharacter>(name);
+    player = std::make_unique<Trainee>(name);
 }
 
 void Engine::save(void)
