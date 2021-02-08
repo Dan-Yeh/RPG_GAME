@@ -5,20 +5,22 @@
 
 class Mage: public Trainee{
 private:
-    unsigned int mana;
-    unsigned int max_mana;
-    unsigned int magic;
+    unsigned int level = 5;
+    unsigned int mana = 30;
+    unsigned int max_mana = 30;
+    unsigned int magic = 7;
+    unsigned int magic_threshold = 5;
+    unsigned int mp_consumption = 2;
     
 public:
     Mage(std::string n, unsigned int hp) : Trainee(n, hp){};
     Mage(std::ifstream& file) : Trainee(file){};
 
     // override methods
+    unsigned int attack(void) override;
     void rest(void) override;
-    unsigned int get_attack_pts(void) const override;
-    
-    void gain_experience(void);
-    void level_up();
+    void show_status(void) const override;
+    bool level_up(void) override;
 };
 
 #endif

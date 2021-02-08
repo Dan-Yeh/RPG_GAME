@@ -1,4 +1,5 @@
-#include "../include/Characters.h"
+#include "../include/Trainee.h"
+#include "../include/Villain.h"
 #include "../include/Engine.h"
 #include "../include/Game.h"
 
@@ -66,6 +67,7 @@ void Game::game_loop()
         behavior_options();
         std::cin >> action;
         if (action == "fight") {
+            //TODO: why fight not in Engine?
             fight(engine);
             continue;
         } else if (action == "rest") {
@@ -95,7 +97,7 @@ void Game::game_loop()
 void Game::fight(Engine& engine)
 {
     std::cout << "A Gobelin appears\n";
-    std::unique_ptr<BaseCharacter> enemy = std::make_unique<BaseCharacter>("Gobelin", 15);
+    std::unique_ptr<Villain> enemy = std::make_unique<Villain>("Gobelin", 15);
     while (true) {
         std::cout << "You've been attack! Lose " << enemy->get_attack_pts() << "hp.\n";
         std::cout << "Fight back! The Gobelin lose " << engine.player->get_attack_pts() << " hp.\n";

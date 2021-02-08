@@ -5,17 +5,16 @@
 
 class Trainee: public BaseCharacter{
 protected:
-    unsigned int level;
+    unsigned int transfer_level = 5;
 public:
     Trainee(std::string n = "default", unsigned int hp = 20) : BaseCharacter(n, hp) {}
     Trainee(std::ifstream& file) : BaseCharacter(file) {}
 
     // override methods
-    unsigned int get_attack_pts(void) const override;
-    void rest(void) override;
-    
-    void gain_experience(void);
-    void level_up(void);
+
+    //abstract method
+    virtual void rest(void);
+    virtual bool level_up(void);
 };
 
 #endif

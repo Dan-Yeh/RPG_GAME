@@ -1,19 +1,23 @@
 #include "../include/Trainee.h"
 
-unsigned int Trainee::get_attack_pts(void) const{
-    return attack_pts;
-}
-
-void Trainee::rest(void){
+void Trainee::rest(void)
+{
     HP = max_HP;
     std::cout << "Rest to restore HP!" << std::endl;
 }
 
-void Trainee::gain_experience(void){
-
+bool Trainee::level_up(void)
+{
+    level++;
+    max_HP++;
+    attack_pts++;
+    defense_pts++;
+    HP = max_HP;
+    std::cout << "LEVEL UP!!!" << std::endl;
+    std::cout << "Your status now" << std ::endl;
+    show_status();
+    if (level == transfer_level)
+        std::cout << "Congratulation! You are now able to choose a profession!" << std::endl;
+        return true;
+    return false;
 }
-
-void Trainee::level_up(void){
-
-}
-

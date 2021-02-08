@@ -12,25 +12,26 @@ protected:
     unsigned int max_HP = 20;
     unsigned int attack_pts = 5;
     unsigned int defense_pts = 3;
+    unsigned int level = 1;
 
 
 public:
-    BaseCharacter(){};
     BaseCharacter(std::string n = "default", unsigned int hp = 20);
     BaseCharacter(std::ifstream& file);
     
     std::string get_name(void) const;
     unsigned int get_maxHP(void) const;
     unsigned int get_HP(void) const;
+    unsigned int get_attack_pts(void) const;
     unsigned int get_defense_pts(void) const;
-    void show_status(void);
+    unsigned int get_level(void) const;
     void sub_HP(unsigned int lose);
     bool isAlive(void);
 
     // abstract methods
-    virtual ~BaseCharacter() {}
-    virtual unsigned int get_attack_pts(void) const = 0; 
-    virtual void rest(void) = 0;
+    virtual ~BaseCharacter() {};
+    virtual unsigned int attack(void);
+    virtual void show_status(void) const;
 };
 
 #endif
