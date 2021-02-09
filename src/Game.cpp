@@ -99,10 +99,10 @@ void Game::fight(Engine& engine)
     std::cout << "A Gobelin appears\n";
     std::unique_ptr<Villain> enemy = std::make_unique<Villain>("Gobelin", 15);
     while (true) {
-        std::cout << "You've been attack! Lose " << enemy->get_attack_pts() << "hp.\n";
-        std::cout << "Fight back! The Gobelin lose " << engine.player->get_attack_pts() << " hp.\n";
-        engine.player->sub_HP(enemy->get_attack_pts());
-        enemy->sub_HP(engine.player->get_attack_pts());
+        std::cout << "You've been attack! Lose " << enemy->attack() << "hp.\n";
+        std::cout << "Fight back! The Gobelin lose " << engine.player->attack() << " hp.\n";
+        engine.player->sub_HP(enemy->attack());
+        enemy->sub_HP(engine.player->attack());
         if (!enemy->isAlive()) {
             std::string n = enemy->get_name();
             std::cout << "The " << n << " is dead! You win!\n";

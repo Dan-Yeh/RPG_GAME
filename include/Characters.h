@@ -8,6 +8,7 @@
 class BaseCharacter {
 protected:
     std::string name;
+    unsigned int type_id;
     unsigned int HP = 20;
     unsigned int max_HP = 20;
     unsigned int attack_pts = 5;
@@ -17,9 +18,10 @@ protected:
 
 public:
     BaseCharacter(std::string n = "default", unsigned int hp = 20);
-    BaseCharacter(std::ifstream& file);
+    BaseCharacter(std::ifstream &file);
     
     std::string get_name(void) const;
+    unsigned int get_type_id(void) const;
     unsigned int get_maxHP(void) const;
     unsigned int get_HP(void) const;
     unsigned int get_attack_pts(void) const;

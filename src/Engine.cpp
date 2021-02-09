@@ -1,6 +1,7 @@
 #include "../include/Engine.h"
 #include "../include/Trainee.h"
 #include <cstdlib>
+#include <iostream>
 #include <istream>
 #include <memory>
 
@@ -13,15 +14,9 @@ Engine::Engine(std::string name)
 
 void Engine::save(void)
 {
-//TODO: Mage Save
     std::ofstream out_file(file_name);
     if (out_file.is_open()) {
-        out_file << player->get_name() << std::endl
-                 << player->get_level() << std::endl
-                 << player->get_HP() << std::endl
-                 << player->get_maxHP() << std::endl
-                 << player->get_attack_pts() << std::endl
-                 << player->get_defense_pts() << std::endl;
+        player->save(out_file);
         out_file.close();
     } else {
         std::cout << "Cannot open the File.\n";
@@ -34,7 +29,7 @@ void Engine::load(void)
     if (file.peek() == std::ifstream::traits_type::eof()) {
         std::cout << "The record is empty! Start a new game with this name.\n";
     } else {
-        player = std::make_unique<Trainee>(file);
+        player = create_player(file);
     }
 }
 
@@ -50,22 +45,62 @@ void Engine::show(void)
     player->show_status();
 }
 
-std::unique_ptr<Trainee> Engine::create_player(std::istream file)
+void Engine::level_up(void)
 {
-//TODO: dynamic_cast
-    int line_no = 0;
-    std::string str = "";
-    while (!file.eof()) {
-        ++line_no;
-        if (line_no == 2)
-            getline(file, str);
+    if (player->level_up())
+        choose_profession();
+}
+
+void Engine::choose_profession(void)
+{
+    std::cout << "Congrats! Your are now able to choose a profession." << std::endl;
+    std::cout << "Press 2 if you want to be a Fighter." << std::endl;
+    std::cout << "Press 3 if you want to be a Mage." << std::endl;
+    unsigned int type_id;
+    while (true) {
+        std::cin >> type_id;
+        if (std::isdigit(type_id))
+            break;
+        else
+            std::cout << "Please type digits!" << std::endl;
     }
+    //TODO:add overload version of create_player(n, hp)
+  
+    std::string name = player->get_name();
+    unsigned int hp = player->get_HP();
+    player = create_player(name, hp, type_id);
+}
 
-    if (line_no > 6) 
-        return std::make_unique<Mage>(&file);
+std::unique_ptr<Trainee> Engine::create_player(std::ifstream &file)
+{
+    unsigned int type_id;
+    file >> type_id;
+    switch (type_id) {
+    case 1:
+        return std::make_unique<Trainee>(file);
+    case 2:
+        return std::make_unique<Fighter>(file);
+    case 3:
+        return std::make_unique<Mage>(file);
+    default:
+        std::cout << "Wrong ID! Please restart the game." << std::endl;
+        break;
+    }
+    return nullptr;
+}
 
-    if (std::stoi(str) > 4) 
-        return std::make_unique<Fighter>(&file);
-
-    return std::make_unique<Trainee>(&file);
+std::unique_ptr<Trainee> Engine::create_player(std::string n, unsigned int hp, unsigned int type_id)
+{
+    switch (type_id) {
+    case 1:
+        return std::make_unique<Trainee>(n, hp);
+    case 2:
+        return std::make_unique<Fighter>(n, hp);
+    case 3:
+        return std::make_unique<Mage>(n, hp);
+    default:
+        std::cout << "Wrong ID! Please restart the game." << std::endl;
+        break;
+    }
+    return nullptr;
 }

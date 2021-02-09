@@ -10,6 +10,20 @@ unsigned int Mage::attack(void)
         return get_attack_pts();
 }
 
+void Mage::save(std::ofstream &out_file) const
+{
+    out_file << type_id << std::endl
+             << name << std::endl
+             << level << std::endl
+             << HP << std::endl
+             << max_HP << std::endl
+             << attack_pts << std::endl
+             << defense_pts << std::endl
+             << mana << std::endl
+             << max_mana << std::endl
+             << magic << std::endl;
+}
+
 void Mage::rest(void)
 {
     HP = max_HP;

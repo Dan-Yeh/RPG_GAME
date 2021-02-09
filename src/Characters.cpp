@@ -6,9 +6,10 @@ BaseCharacter::BaseCharacter(std::string n, unsigned int hp)
     HP = (hp > HP) ? HP : hp;
 }
 
-BaseCharacter::BaseCharacter(std::ifstream& file)
-{   
-    file >> name
+BaseCharacter::BaseCharacter(std::ifstream &file)
+{
+    file >> type_id
+        >> name
         >> level
         >> HP
         >> max_HP
@@ -18,7 +19,9 @@ BaseCharacter::BaseCharacter(std::ifstream& file)
 
 std::string BaseCharacter::get_name(void) const { return name; }
 
-unsigned int BaseCharacter::get_level(void) const {return level;}
+unsigned int BaseCharacter::get_type_id(void) const { return type_id; }
+
+unsigned int BaseCharacter::get_level(void) const { return level; }
 
 unsigned int BaseCharacter::get_maxHP(void) const { return max_HP; }
 
@@ -28,7 +31,8 @@ unsigned int BaseCharacter::get_defense_pts(void) const { return defense_pts; }
 
 unsigned int BaseCharacter::get_attack_pts(void) const { return attack_pts; }
 
-unsigned int BaseCharacter::attack(void) {
+unsigned int BaseCharacter::attack(void)
+{
     unsigned int attck_pts = get_attack_pts();
     return attck_pts;
 }

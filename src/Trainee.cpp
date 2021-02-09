@@ -1,4 +1,16 @@
 #include "../include/Trainee.h"
+#include <fstream>
+
+void Trainee::save(std::ofstream& out_file) const
+{
+    out_file << type_id << std::endl
+             << name << std::endl
+             << level << std::endl
+             << HP << std::endl
+             << max_HP << std::endl
+             << attack_pts << std::endl
+             << defense_pts << std::endl;
+}
 
 void Trainee::rest(void)
 {
@@ -16,8 +28,9 @@ bool Trainee::level_up(void)
     std::cout << "LEVEL UP!!!" << std::endl;
     std::cout << "Your status now" << std ::endl;
     show_status();
-    if (level == transfer_level)
+    if (level == transfer_level) {
         std::cout << "Congratulation! You are now able to choose a profession!" << std::endl;
         return true;
+    }
     return false;
 }

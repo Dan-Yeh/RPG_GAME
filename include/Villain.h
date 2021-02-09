@@ -7,7 +7,8 @@
 
 class Villain : public BaseCharacter {
 public:
-    Villain(std::string n = "Villain") : BaseCharacter(n)
+    Villain(std::string n = "Villain", unsigned int hp = 20)
+        : BaseCharacter(n)
     {
         /* Random generate skill points*/
         srand(time(NULL));
