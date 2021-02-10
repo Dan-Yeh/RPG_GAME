@@ -8,17 +8,17 @@
 class Villain : public BaseCharacter {
 public:
     Villain(std::string n = "Villain", unsigned int hp = 20)
-        : BaseCharacter(n)
+        : BaseCharacter(n, hp)
     {
         /* Random generate skill points*/
-        srand(time(NULL));
-        unsigned int num = rand() * 10 + 1;
-        name += std::string(num, 'V');
-        HP += num;
-        max_HP += num;
-        attack_pts += num;
-        defense_pts += num;
-        level += num;
+        // srand(time(NULL));
+        // unsigned int num = rand() * 10 + 1;
+        // name += std::string(num, 'V');
+        // HP += num;
+        // max_HP += num;
+        // attack_pts += num;
+        // defense_pts += num;
+        // level += num;
     }
 };
 

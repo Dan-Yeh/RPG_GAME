@@ -27,7 +27,8 @@ public:
     unsigned int get_attack_pts(void) const;
     unsigned int get_defense_pts(void) const;
     unsigned int get_level(void) const;
-    void sub_HP(unsigned int lose);
+    unsigned sub_HP(unsigned int attack_pts, unsigned int defense_pts);
+    unsigned int defend(void);
     bool isAlive(void);
 
     // abstract methods

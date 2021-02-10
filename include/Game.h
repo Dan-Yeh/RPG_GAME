@@ -13,7 +13,6 @@ private:
 
     void menu();
     void behavior_options();
-    void fight(Engine& engine);
 
 public:
     Game();

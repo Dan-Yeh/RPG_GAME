@@ -28,9 +28,6 @@ bool Trainee::level_up(void)
     std::cout << "LEVEL UP!!!" << std::endl;
     std::cout << "Your status now" << std ::endl;
     show_status();
-    if (level == transfer_level) {
-        std::cout << "Congratulation! You are now able to choose a profession!" << std::endl;
-        return true;
-    }
+    if (level == transfer_level) { return true; }
     return false;
 }

@@ -4,6 +4,7 @@
 #include "Trainee.h"
 #include "Mage.h"
 #include "Fighter.h"
+#include "Villain.h"
 #include <fstream>
 #include <iostream>
 #include <memory>
@@ -27,6 +28,7 @@ public:
     void save(void);
     void load(void);
     void rest(void);
+    void fight(void);
     void show(void);
     void level_up(void);
     void choose_profession(void);

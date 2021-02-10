@@ -1,5 +1,4 @@
 #include "../include/Engine.h"
-#include "../include/Trainee.h"
 #include <cstdlib>
 #include <iostream>
 #include <istream>
@@ -39,6 +38,28 @@ void Engine::rest(void)
     player->rest();
 }
 
+void Engine::fight()
+{
+    std::cout << "A Gobelin appears\n";
+    std::unique_ptr<Villain> enemy = std::make_unique<Villain>("Gobelin", 15);
+    while (true) {
+        std::cout << "You've been attack! Lose " << player->sub_HP(enemy->attack(),player->defend()) << "hp.\n";
+        std::cout << "Current hp: " << player->get_HP() << std::endl;
+        if (!player->isAlive()) {
+            std::cout << "You're defeated!\n";
+            break;
+        }
+        std::cout << "Fight back! The Gobelin loses " << enemy->sub_HP(player->attack(),enemy->defend()) << " hp.\n";
+        if (!enemy->isAlive()) {
+            std::string n = enemy->get_name();
+            std::cout << "The " << n << " is dead! You win!\n";
+            level_up();
+            break;
+        }
+    }
+    in_game_day++;
+}
+
 void Engine::show(void)
 {
     std::cout << "In game day is: " << in_game_day << " days.\n";
@@ -59,6 +80,7 @@ void Engine::choose_profession(void)
     unsigned int type_id;
     while (true) {
         std::cin >> type_id;
+        // TODO: isdigit behaves false positive.
         if (std::isdigit(type_id))
             break;
         else

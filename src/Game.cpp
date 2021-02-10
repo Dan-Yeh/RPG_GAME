@@ -68,7 +68,7 @@ void Game::game_loop()
         std::cin >> action;
         if (action == "fight") {
             //TODO: why fight not in Engine?
-            fight(engine);
+            engine.fight();
             continue;
         } else if (action == "rest") {
             engine.rest();
@@ -91,26 +91,5 @@ void Game::game_loop()
 
     if (!engine.player->isAlive()) {
         std::cout << "You died!\n";
-    }
-}
-
-void Game::fight(Engine& engine)
-{
-    std::cout << "A Gobelin appears\n";
-    std::unique_ptr<Villain> enemy = std::make_unique<Villain>("Gobelin", 15);
-    while (true) {
-        std::cout << "You've been attack! Lose " << enemy->attack() << "hp.\n";
-        std::cout << "Fight back! The Gobelin lose " << engine.player->attack() << " hp.\n";
-        engine.player->sub_HP(enemy->attack());
-        enemy->sub_HP(engine.player->attack());
-        if (!enemy->isAlive()) {
-            std::string n = enemy->get_name();
-            std::cout << "The " << n << " is dead! You win!\n";
-            break;
-        }
-        if (!engine.player->isAlive()) {
-            std::cout << "You're defeated!\n";
-            break;
-        }
     }
 }
