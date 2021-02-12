@@ -57,3 +57,17 @@ bool Mage::level_up()
     show_status();
     return false;
 }
+
+unsigned int Mage::get_type_id(void) const { return type_id; }
+
+std::string Mage::get_class_name(void) const { return class_name; }
+
+unsigned int Mage::get_maxHP(void) const { return max_HP; }
+
+unsigned int Mage::get_HP(void) const { return HP; }
+
+unsigned int Mage::get_attack_pts(void) const { return attack_pts; }
+
+unsigned int Mage::get_defense_pts(void) const { return defense_pts; }
+
+unsigned int Mage::get_level(void) const { return level; }

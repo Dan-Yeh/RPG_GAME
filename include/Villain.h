@@ -12,6 +12,8 @@
 #include <time.h>
 
 class Villain : public BaseCharacter {
+private:
+    const std::string class_name = "Villain";
 public:
     Villain(std::string n = "Villain", unsigned int hp = 20)
         : BaseCharacter(n, hp)

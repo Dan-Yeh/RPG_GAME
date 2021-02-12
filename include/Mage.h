@@ -12,6 +12,7 @@
 class Mage: public Trainee{
 private:
     const unsigned int type_id = 3;
+    std::string class_name = "Mage";
     unsigned int level = 5;
     unsigned int mana = 30;
     unsigned int max_mana = 30;
@@ -28,6 +29,13 @@ public:
     };
 
     // override methods
+    std::string get_class_name(void) const override;
+    unsigned int get_type_id(void) const override;
+    unsigned int get_maxHP(void) const override;
+    unsigned int get_HP(void) const override ;
+    unsigned int get_attack_pts(void) const override;
+    unsigned int get_defense_pts(void) const override;
+    unsigned int get_level(void) const override;
     unsigned int attack(void) override;
     void save(std::ofstream &out_file) const override;
     void rest(void) override;

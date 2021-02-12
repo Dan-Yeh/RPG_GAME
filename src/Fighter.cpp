@@ -22,3 +22,17 @@ bool Fighter::level_up()
     show_status();
     return false;
 }
+
+unsigned int Fighter::get_type_id(void) const { return type_id; }
+
+std::string Fighter::get_class_name(void) const { return class_name; }
+
+unsigned int Fighter::get_maxHP(void) const { return max_HP; }
+
+unsigned int Fighter::get_HP(void) const { return HP; }
+
+unsigned int Fighter::get_attack_pts(void) const { return attack_pts; }
+
+unsigned int Fighter::get_defense_pts(void) const { return defense_pts; }
+
+unsigned int Fighter::get_level(void) const { return level; }
