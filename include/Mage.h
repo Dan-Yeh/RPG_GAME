@@ -13,7 +13,6 @@ class Mage: public Trainee{
 private:
     const unsigned int type_id = 3;
     std::string class_name = "Mage";
-    unsigned int level = 5;
     unsigned int mana = 30;
     unsigned int max_mana = 30;
     unsigned int magic = 7;

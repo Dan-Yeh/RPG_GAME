@@ -34,6 +34,7 @@ void Mage::rest(void)
 void Mage::show_status(void) const
 {
     std::cout << "Name: " << name << std::endl;
+    std::cout << "Profession: " << get_class_name()<< std::endl;
     std::cout << "Level: " << level << std::endl;
     std::cout << "Current HP is " << HP << std::endl;
     std::cout << "Current Mana is " << mana << std::endl;
@@ -50,7 +51,6 @@ bool Mage::level_up()
     attack_pts++;
     magic += 3;
     defense_pts++;
-    mana = max_mana;
     std::cout << "LEVEL UP!!!" << std::endl;
     std::cout << "Your status now" << std ::endl;
     show_status();
