@@ -1,4 +1,5 @@
 ##add memory check /test / debug command
+#CMake
 CXX = g++ 
 CXXFLAGS = --std=c++17 -Wall
 

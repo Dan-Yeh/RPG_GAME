@@ -15,7 +15,7 @@
 
 class Fighter: public Trainee {
 private:
-    unsigned int type_id = 3;
+    const unsigned int type_id = 2;
     unsigned int level = 5;
     unsigned int HP = 40;
     float prob_threshold = 0.8;

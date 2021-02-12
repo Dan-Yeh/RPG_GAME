@@ -20,7 +20,8 @@ protected:
     unsigned int max_HP = 20;
     unsigned int attack_pts = 5;
     unsigned int defense_pts = 3;
-    unsigned int level = 1;
+    //TODO:4 for test, remember change to 1 after fix bug
+    unsigned int level = 4;
 
 
 public:

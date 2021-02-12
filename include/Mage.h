@@ -11,7 +11,7 @@
 
 class Mage: public Trainee{
 private:
-    unsigned int type_id = 3;
+    const unsigned int type_id = 3;
     unsigned int level = 5;
     unsigned int mana = 30;
     unsigned int max_mana = 30;

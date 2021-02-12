@@ -19,6 +19,7 @@ void Engine::save(void)
         out_file.close();
     } else {
         std::cout << "Cannot open the File.\n";
+        std::cout << "Probably at wrong directory.\n";
     }
 }
 
@@ -77,22 +78,22 @@ void Engine::choose_profession(void)
     std::cout << "Congrats! Your are now able to choose a profession." << std::endl;
     std::cout << "Press 2 if you want to be a Fighter." << std::endl;
     std::cout << "Press 3 if you want to be a Mage." << std::endl;
-    unsigned int type_id;
+    char type_id;
     while (true) {
         std::cin >> type_id;
-        // TODO: isdigit behaves false positive.
         if (std::isdigit(type_id))
             break;
         else
             std::cout << "Please type digits!" << std::endl;
     }
-    //TODO:add overload version of create_player(n, hp)
-  
+    unsigned int type_ID = static_cast<unsigned int>(type_id - '0');
+    
     std::string name = player->get_name();
     unsigned int hp = player->get_HP();
-    player = create_player(name, hp, type_id);
+    player = create_player(name, hp, type_ID);
 }
 
+//TODO:Template?
 std::unique_ptr<Trainee> Engine::create_player(std::ifstream &file)
 {
     unsigned int type_id;
@@ -111,8 +112,10 @@ std::unique_ptr<Trainee> Engine::create_player(std::ifstream &file)
     return nullptr;
 }
 
+//TODO:Template?
 std::unique_ptr<Trainee> Engine::create_player(std::string n, unsigned int hp, unsigned int type_id)
 {
+    std::cout << type_id;
     switch (type_id) {
     case 1:
         return std::make_unique<Trainee>(n, hp);

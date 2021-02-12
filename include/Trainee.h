@@ -15,7 +15,7 @@
 
 class Trainee: public BaseCharacter{
 protected:
-    unsigned int type_id = 1;
+    const unsigned int type_id = 1;
     unsigned int transfer_level = 5;
 
 public:
