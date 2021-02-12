@@ -12,13 +12,12 @@
 #include <time.h>
 
 class Villain : public BaseCharacter {
-private:
-    std::string class_name = "Villain";
-
 public:
     Villain(std::string n = "Villain", unsigned int hp = 20)
         : BaseCharacter(n, hp)
     {
+        class_name = "Villain";
+        type_id = 4;
         /* Random generate skill points*/
         srand(time(0));
         unsigned int num = ((double) rand() / (RAND_MAX))*5 + 1;

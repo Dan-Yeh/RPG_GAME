@@ -11,8 +11,6 @@
 
 class Mage: public Trainee{
 private:
-    const unsigned int type_id = 3;
-    std::string class_name = "Mage";
     unsigned int mana = 30;
     unsigned int max_mana = 30;
     unsigned int magic = 7;
@@ -20,21 +18,20 @@ private:
     unsigned int mp_consumption = 2;
     
 public:
-    Mage(Trainee &trainee) : Trainee(trainee){};
+    Mage(Trainee &trainee) : Trainee(trainee){
+        class_name = "Mage";
+        type_id = 3;
+    };
     Mage(std::ifstream &file) : Trainee(file){
         file >> mana
             >> max_mana
             >> magic;
+
+        class_name = "Mage";
+        type_id = 3;
     };
 
     // override methods
-    std::string get_class_name(void) const override;
-    unsigned int get_type_id(void) const override;
-    unsigned int get_maxHP(void) const override;
-    unsigned int get_HP(void) const override ;
-    unsigned int get_attack_pts(void) const override;
-    unsigned int get_defense_pts(void) const override;
-    unsigned int get_level(void) const override;
     unsigned int attack(void) override;
     void save(std::ofstream &out_file) const override;
     void rest(void) override;

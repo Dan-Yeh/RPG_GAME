@@ -32,16 +32,3 @@ bool Trainee::level_up(void)
 }
 
 
-unsigned int Trainee::get_type_id(void) const { return type_id; }
-
-std::string Trainee::get_class_name(void) const { return class_name; }
-
-unsigned int Trainee::get_maxHP(void) const { return max_HP; }
-
-unsigned int Trainee::get_HP(void) const { return HP; }
-
-unsigned int Trainee::get_attack_pts(void) const { return attack_pts; }
-
-unsigned int Trainee::get_defense_pts(void) const { return defense_pts; }
-
-unsigned int Trainee::get_level(void) const { return level; }

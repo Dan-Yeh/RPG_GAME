@@ -15,7 +15,6 @@ void Engine::save(void)
 {
     std::ofstream out_file(file_name);
     if (out_file.is_open()) {
-        out_file << in_game_day << std::endl;
         player->save(out_file);
         out_file.close();
     } else {
@@ -30,7 +29,6 @@ void Engine::load(void)
     if (file.peek() == std::ifstream::traits_type::eof()) {
         std::cout << "The record is empty! Start a new game with this name.\n";
     } else {
-        file >> in_game_day;
         player = create_player(file);
     }
 }
