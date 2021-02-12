@@ -24,7 +24,7 @@ bool Trainee::level_up(void)
     max_HP++;
     attack_pts++;
     defense_pts++;
-    std::cout << "LEVEL UP!!!" << std::endl;
+    std::cout << "\nLEVEL UP!!!" << std::endl;
     std::cout << "Your status now" << std ::endl;
     show_status();
     if (level == transfer_level) { return true; }

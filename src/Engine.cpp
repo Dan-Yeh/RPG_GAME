@@ -15,6 +15,7 @@ void Engine::save(void)
 {
     std::ofstream out_file(file_name);
     if (out_file.is_open()) {
+        out_file << in_game_day << std::endl;
         player->save(out_file);
         out_file.close();
     } else {
@@ -29,29 +30,33 @@ void Engine::load(void)
     if (file.peek() == std::ifstream::traits_type::eof()) {
         std::cout << "The record is empty! Start a new game with this name.\n";
     } else {
+        file >> in_game_day;
         player = create_player(file);
     }
 }
 
 void Engine::rest(void)
 {
-    in_game_day++;
     player->rest();
+    in_game_day++;
 }
 
 void Engine::fight()
 {
     std::unique_ptr<Villain> enemy = std::make_unique<Villain>("Gobelin", 15);
-    std::cout << "A Gobelin appears\n";
+    std::cout << "\nA Gobelin appears\n";
     enemy->show_status();
+    unsigned int player_sub_HP, enemy_sub_HP;
     while (true) {
-        std::cout << "You've been attack! Lose " << player->sub_HP(enemy->attack(),player->defend()) << "hp.\n";
-        std::cout << "Current hp: " << player->get_HP() << std::endl;
+        player_sub_HP = player->sub_HP(enemy->attack(),player->defend());
+        std::cout << "\nYou've been attack! Lose " << player_sub_HP << " hp.";
+        std::cout << "\tCurrent hp: " << player->get_HP() << std::endl;
         if (!player->isAlive()) {
             std::cout << "You're defeated!\n";
             break;
         }
-        std::cout << "Fight back! The Gobelin loses " << enemy->sub_HP(player->attack(),enemy->defend()) << " hp.\n";
+        enemy_sub_HP = enemy->sub_HP(player->attack(),enemy->defend());
+        std::cout << "Fight back! The Gobelin loses " << enemy_sub_HP << " hp.\n";
         if (!enemy->isAlive()) {
             std::string n = enemy->get_name();
             std::cout << "The " << n << " is dead! You win!\n";
@@ -113,13 +118,15 @@ std::unique_ptr<Trainee> Engine::create_player(std::ifstream &file)
 //TODO:Template?
 std::unique_ptr<Trainee> Engine::create_player(unsigned int type_id)
 {
-    std::cout << type_id;
     switch (type_id) {
     case 1:
+        std::cout << "Stay as a Trainee.\n";
         return std::make_unique<Trainee>(*player);
     case 2:
+        std::cout << "Transfer into a Fighter!!!\n";
         return std::make_unique<Fighter>(*player);
     case 3:
+        std::cout << "Transfer into a Mage!!!\n";
         return std::make_unique<Mage>(*player);
     default:
         std::cout << "Wrong ID! Please restart the game." << std::endl;
