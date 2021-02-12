@@ -1,5 +1,7 @@
-#include "../include/Characters.h"
+#include "../Factory/Characters.h"
 #include <string>
+
+using namespace CharacterFactory;
 
 BaseCharacter::BaseCharacter(std::string n, unsigned int hp)
 {

@@ -1,4 +1,6 @@
-#include "../include/Mage.h"
+#include "../Factory/Mage.h"
+
+using namespace CharacterFactory;
 
 unsigned int Mage::attack(void)
 {

@@ -1,7 +1,11 @@
 #ifndef TRAINEE_H
 #define TRAINEE_H
 
+#include "Characters.h"
+#include <fstream>
+
 /**
+ * In namespace CharacterFactory
  * Class inherited from BaseCharacter
  * Class for Trainee and Base class for Mage and Fighter.
  * 
@@ -9,10 +13,7 @@
  * by all players in game.
  *
  * */
-
-#include "Characters.h"
-#include <fstream>
-
+namespace CharacterFactory {
 class Trainee : public BaseCharacter {
 protected:
     unsigned int transfer_level = 5;
@@ -38,5 +39,5 @@ public:
     virtual void rest(void);
     virtual bool level_up(void);
 };
-
+}
 #endif

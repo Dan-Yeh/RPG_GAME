@@ -6,11 +6,13 @@ CXXFLAGS = --std=c++17 -Wall
 #location of files
 SRC = ../src
 INCLUDE = ../include
+FACTORY = ../Factory
 SAVEFOLDER = ../saves
 OBJ_DIR = objects
 SOURCES = $(wildcard $(SRC)/*.cpp)
 OBJECTS = $(patsubst $(SRC)/%.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 HEADERS = $(wildcard $(INCLUDE)/*.h)
+HEADERS += $(wildcard $(FACTORY)/*.h)
 
 GAME_NAME = ../RPG_GAME
 

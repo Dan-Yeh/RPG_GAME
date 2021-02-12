@@ -1,5 +1,7 @@
-#include "../include/Trainee.h"
+#include "../Factory/Trainee.h"
 #include <fstream>
+
+using namespace CharacterFactory;
 
 void Trainee::save(std::ofstream& out_file) const
 {

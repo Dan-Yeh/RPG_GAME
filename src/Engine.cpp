@@ -8,29 +8,17 @@ Engine::Engine(std::string name)
 {
     in_game_day = 0;
     file_name = DIR_PATH + name + ".txt";
-    player = std::make_unique<Trainee>(name);
+    player = std::make_unique<CharacterFactory::Trainee>(name);
 }
 
 void Engine::save(void)
 {
-    std::ofstream out_file(file_name);
-    if (out_file.is_open()) {
-        player->save(out_file);
-        out_file.close();
-    } else {
-        std::cout << "Cannot open the File.\n";
-        std::cout << "Probably at wrong directory.\n";
-    }
+    CharacterFactory::save(file_name, player);
 }
 
 void Engine::load(void)
 {
-    std::ifstream file(file_name);
-    if (file.peek() == std::ifstream::traits_type::eof()) {
-        std::cout << "The record is empty! Start a new game with this name.\n";
-    } else {
-        player = create_player(file);
-    }
+    player = CharacterFactory::load(file_name);
 }
 
 void Engine::rest(void)
@@ -41,7 +29,7 @@ void Engine::rest(void)
 
 void Engine::fight()
 {
-    std::unique_ptr<Villain> enemy = std::make_unique<Villain>("Gobelin", 15);
+    std::unique_ptr<CharacterFactory::Villain> enemy = std::make_unique<CharacterFactory::Villain>("Gobelin", 15);
     std::cout << "\nA Gobelin appears\n";
     enemy->show_status();
     unsigned int player_sub_HP, enemy_sub_HP;
@@ -74,61 +62,6 @@ void Engine::show(void)
 void Engine::level_up(void)
 {
     if (player->level_up())
-        choose_profession();
+        player = CharacterFactory::choose_profession(player);
 }
 
-void Engine::choose_profession(void)
-{
-    std::cout << "Congrats! Your are now able to choose a profession." << std::endl;
-    std::cout << "Press 2 if you want to be a Fighter." << std::endl;
-    std::cout << "Press 3 if you want to be a Mage." << std::endl;
-    char type_id;
-    while (true) {
-        std::cin >> type_id;
-        if (std::isdigit(type_id))
-            break;
-        else
-            std::cout << "Please type digits!" << std::endl;
-    }
-    unsigned int type_ID = static_cast<unsigned int>(type_id - '0');
-    player = create_player(type_ID);
-}
-
-//TODO:Template?
-std::unique_ptr<Trainee> Engine::create_player(std::ifstream &file)
-{
-    unsigned int type_id;
-    file >> type_id;
-    switch (type_id) {
-    case 1:
-        return std::make_unique<Trainee>(file);
-    case 2:
-        return std::make_unique<Fighter>(file);
-    case 3:
-        return std::make_unique<Mage>(file);
-    default:
-        std::cout << "Wrong ID! Please restart the game." << std::endl;
-        break;
-    }
-    return nullptr;
-}
-
-//TODO:Template?
-std::unique_ptr<Trainee> Engine::create_player(unsigned int type_id)
-{
-    switch (type_id) {
-    case 1:
-        std::cout << "Stay as a Trainee.\n";
-        return std::make_unique<Trainee>(*player);
-    case 2:
-        std::cout << "Transfer into a Fighter!!!\n";
-        return std::make_unique<Fighter>(*player);
-    case 3:
-        std::cout << "Transfer into a Mage!!!\n";
-        return std::make_unique<Mage>(*player);
-    default:
-        std::cout << "Wrong ID! Please restart the game." << std::endl;
-        break;
-    }
-    return nullptr;
-}

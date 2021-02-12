@@ -1,17 +1,19 @@
 #ifndef CHARACTERS_H
 #define CHARACTERS_H
 
+#include <fstream>
+#include <iostream>
+#include <string>
+
 /**
+ * In namespace CharacterFactory
  * Base Class for Trainee and Villain.
  * 
  * Implement basic properties and methods possessed 
  * by all characters in game.
  * */
 
-#include <fstream>
-#include <iostream>
-#include <string>
-
+namespace CharacterFactory {
 class BaseCharacter {
 protected:
     std::string name;
@@ -45,5 +47,5 @@ public:
     virtual unsigned int attack(void);
     virtual void show_status(void) const;
 };
-
+}
 #endif

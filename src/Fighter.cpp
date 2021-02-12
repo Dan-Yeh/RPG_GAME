@@ -1,5 +1,7 @@
-#include "../include/Fighter.h"
+#include "../Factory/Fighter.h"
 #include <cstdlib>
+
+using namespace CharacterFactory;
 
 unsigned int Fighter::attack(void) 
 {

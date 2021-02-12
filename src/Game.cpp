@@ -1,5 +1,5 @@
-#include "../include/Trainee.h"
-#include "../include/Villain.h"
+#include "../Factory/Trainee.h"
+#include "../Factory/Villain.h"
 #include "../include/Engine.h"
 #include "../include/Game.h"
 
