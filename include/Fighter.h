@@ -1,6 +1,14 @@
 #ifndef FIGHTER_H
 #define FIGHTER_H
 
+/**
+ * Class inherited from Trainee.
+ * 
+ * Implement new version of attack with 
+ * strike with certiain probability.
+ *
+ * */
+
 #include "Trainee.h"
 #include <random>
 #include <time.h>

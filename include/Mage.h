@@ -1,6 +1,12 @@
 #ifndef MAGE_H
 #define MAGE_H
 
+/**
+ * Class inherited from Trainee.
+ * 
+ * Implement magicversion of attack.
+ *
+ * */
 #include "Trainee.h"
 
 class Mage: public Trainee{

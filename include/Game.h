@@ -1,7 +1,10 @@
-//TODO desstructor to autosave file
 #ifndef GAME_H
 #define GAME_H
 
+/**
+ * Class for game logic and menu.
+ * 
+ * */
 #include "Characters.h"
 #include "Engine.h"
 

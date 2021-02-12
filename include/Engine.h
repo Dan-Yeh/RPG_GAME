@@ -1,6 +1,11 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
+/**
+ * Class for managing game engine utilities
+ * 
+ * */
+
 #include "Trainee.h"
 #include "Mage.h"
 #include "Fighter.h"

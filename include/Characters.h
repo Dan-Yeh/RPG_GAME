@@ -1,6 +1,13 @@
 #ifndef CHARACTERS_H
 #define CHARACTERS_H
 
+/**
+ * Base Class for Trainee and Villain.
+ * 
+ * Implement basic properties and methods possessed 
+ * by all characters in game.
+ * */
+
 #include <fstream>
 #include <iostream>
 #include <string>

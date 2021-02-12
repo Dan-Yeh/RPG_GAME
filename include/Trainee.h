@@ -1,6 +1,15 @@
 #ifndef TRAINEE_H
 #define TRAINEE_H
 
+/**
+ * Class inherited from BaseCharacter
+ * Class for Trainee and Base class for Mage and Fighter.
+ * 
+ * Implement basic properties and methods possessed 
+ * by all players in game.
+ *
+ * */
+
 #include "Characters.h"
 #include <fstream>
 

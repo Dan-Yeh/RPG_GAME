@@ -1,6 +1,12 @@
 #ifndef VILLAIN_H
 #define VILLAIN_H
 
+/**
+ * Class inherited from BaseCharacter
+ * 
+ * Implement random variable generator for generating Villains
+ *
+ * */
 #include "Characters.h"
 #include <random>
 #include <time.h>
