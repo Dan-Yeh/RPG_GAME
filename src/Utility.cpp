@@ -1,11 +1,13 @@
 #include "../Factory/Utility.h"
+#include <utility>
 
 using namespace CharacterFactory;
 
-void CharacterFactory::save(std::string file_name, std::unique_ptr<Trainee> &player)
+void CharacterFactory::save(std::string file_name, std::unique_ptr<Trainee> &player, unsigned int in_game_day)
 {
     std::ofstream out_file(file_name);
     if (out_file.is_open()) {
+        out_file << in_game_day;
         player->save(out_file);
         out_file.close();
     } else {
@@ -14,14 +16,17 @@ void CharacterFactory::save(std::string file_name, std::unique_ptr<Trainee> &pla
     }
 }
 
-std::unique_ptr<Trainee> CharacterFactory::load(std::string file_name)
+std::tuple<std::unique_ptr<Trainee>, unsigned int> CharacterFactory::load(std::string file_name)
 {
     std::ifstream file(file_name);
     if (file.peek() == std::ifstream::traits_type::eof()) {
         std::cout << "The record is empty! Start a new game with this name.\n";
-        return nullptr;
+        return std::make_tuple(nullptr, 0);
     } else {
-        return create_player(file);
+        unsigned int in_game_day;
+        file >> in_game_day; 
+        std::unique_ptr<Trainee> player = create_player(file);
+        return std::make_tuple(player, in_game_day);
     }
 }
 

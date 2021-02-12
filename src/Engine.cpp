@@ -13,12 +13,12 @@ Engine::Engine(std::string name)
 
 void Engine::save(void)
 {
-    CharacterFactory::save(file_name, player);
+    CharacterFactory::save(file_name, player, in_game_day);
 }
 
 void Engine::load(void)
 {
-    player = CharacterFactory::load(file_name);
+    auto [player, in_game_day]= CharacterFactory::load(file_name);
 }
 
 void Engine::rest(void)
