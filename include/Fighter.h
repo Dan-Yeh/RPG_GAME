@@ -19,7 +19,7 @@ private:
     std::string class_name = "Fighter";
     float prob_threshold = 0.8;
 public:
-    Fighter(std::string n, unsigned int hp) : Trainee(n, hp){};
+    Fighter(Trainee &trainee) : Trainee(trainee){};
     Fighter(std::ifstream &file) : Trainee(file){};
 
     // override methods

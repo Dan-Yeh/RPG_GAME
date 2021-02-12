@@ -20,7 +20,7 @@ private:
     unsigned int mp_consumption = 2;
     
 public:
-    Mage(std::string n, unsigned int hp) : Trainee(n, hp){};
+    Mage(Trainee &trainee) : Trainee(trainee){};
     Mage(std::ifstream &file) : Trainee(file){
         file >> mana
             >> max_mana

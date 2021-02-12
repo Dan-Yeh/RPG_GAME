@@ -38,7 +38,6 @@ public:
     virtual void save(std::ofstream& out_file) const;
     virtual void rest(void);
     virtual bool level_up(void);
-    virtual void show_status(void) const;
 };
 
 #endif

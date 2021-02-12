@@ -5,7 +5,7 @@ unsigned int Fighter::attack(void)
 {
     /* initialize random seed: */
     srand(time(NULL));
-    float times = rand() > prob_threshold ? 1.5 : 1;
+    float times = ((double) rand() / (RAND_MAX)) > prob_threshold ? 1.5 : 1;
     if (times == 1.5)
         std::cout << "\n";
         std::cout << "Strike!!!\n";

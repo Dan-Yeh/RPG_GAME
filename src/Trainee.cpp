@@ -31,16 +31,6 @@ bool Trainee::level_up(void)
     return false;
 }
 
-void Trainee::show_status(void) const
-{
-    std::cout << "Name: " << name << std::endl;
-    std::cout << "Profession: " << get_class_name()<< std::endl;
-    std::cout << "Level: " << get_level() << std::endl;
-    std::cout << "Current HP is " << get_HP() << std::endl;
-    std::cout << "Attack points: " << get_attack_pts() << std::endl;
-    std::cout << "Defense points: " << get_defense_pts() << std::endl;
-}
-
 
 unsigned int Trainee::get_type_id(void) const { return type_id; }
 

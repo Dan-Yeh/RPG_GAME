@@ -43,6 +43,7 @@ public:
     virtual unsigned int get_defense_pts(void) const;
     virtual unsigned int get_level(void) const;
     virtual unsigned int attack(void);
+    virtual void show_status(void) const;
 };
 
 #endif

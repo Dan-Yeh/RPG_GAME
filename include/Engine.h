@@ -28,7 +28,7 @@ public:
 
     std::unique_ptr<Trainee> player;
     std::unique_ptr<Trainee> create_player(std::ifstream &file);
-    std::unique_ptr<Trainee> create_player(std::string n, unsigned int hp, unsigned int type_id);
+    std::unique_ptr<Trainee> create_player(unsigned int type_id);
 
     void save(void);
     void load(void);

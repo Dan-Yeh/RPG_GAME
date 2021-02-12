@@ -41,8 +41,9 @@ void Engine::rest(void)
 
 void Engine::fight()
 {
-    std::cout << "A Gobelin appears\n";
     std::unique_ptr<Villain> enemy = std::make_unique<Villain>("Gobelin", 15);
+    std::cout << "A Gobelin appears\n";
+    enemy->show_status();
     while (true) {
         std::cout << "You've been attack! Lose " << player->sub_HP(enemy->attack(),player->defend()) << "hp.\n";
         std::cout << "Current hp: " << player->get_HP() << std::endl;
@@ -87,10 +88,7 @@ void Engine::choose_profession(void)
             std::cout << "Please type digits!" << std::endl;
     }
     unsigned int type_ID = static_cast<unsigned int>(type_id - '0');
-    
-    std::string name = player->get_name();
-    unsigned int hp = player->get_HP();
-    player = create_player(name, hp, type_ID);
+    player = create_player(type_ID);
 }
 
 //TODO:Template?
@@ -113,16 +111,16 @@ std::unique_ptr<Trainee> Engine::create_player(std::ifstream &file)
 }
 
 //TODO:Template?
-std::unique_ptr<Trainee> Engine::create_player(std::string n, unsigned int hp, unsigned int type_id)
+std::unique_ptr<Trainee> Engine::create_player(unsigned int type_id)
 {
     std::cout << type_id;
     switch (type_id) {
     case 1:
-        return std::make_unique<Trainee>(n, hp);
+        return std::make_unique<Trainee>(*player);
     case 2:
-        return std::make_unique<Fighter>(n, hp);
+        return std::make_unique<Fighter>(*player);
     case 3:
-        return std::make_unique<Mage>(n, hp);
+        return std::make_unique<Mage>(*player);
     default:
         std::cout << "Wrong ID! Please restart the game." << std::endl;
         break;
