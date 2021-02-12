@@ -50,7 +50,6 @@ bool Mage::level_up()
     attack_pts++;
     magic += 3;
     defense_pts++;
-    HP = max_HP;
     mana = max_mana;
     std::cout << "LEVEL UP!!!" << std::endl;
     std::cout << "Your status now" << std ::endl;

@@ -24,7 +24,6 @@ bool Trainee::level_up(void)
     max_HP++;
     attack_pts++;
     defense_pts++;
-    HP = max_HP;
     std::cout << "LEVEL UP!!!" << std::endl;
     std::cout << "Your status now" << std ::endl;
     show_status();
@@ -35,11 +34,11 @@ bool Trainee::level_up(void)
 void Trainee::show_status(void) const
 {
     std::cout << "Name: " << name << std::endl;
-    std::cout << "Profession: " << class_name << std::endl;
+    std::cout << "Profession: " << get_class_name()<< std::endl;
     std::cout << "Level: " << get_level() << std::endl;
-    std::cout << "Current HP is " << HP << std::endl;
-    std::cout << "Attack points: " << attack_pts << std::endl;
-    std::cout << "Defense points: " << defense_pts << std::endl;
+    std::cout << "Current HP is " << get_HP() << std::endl;
+    std::cout << "Attack points: " << get_attack_pts() << std::endl;
+    std::cout << "Defense points: " << get_defense_pts() << std::endl;
 }
 
 
