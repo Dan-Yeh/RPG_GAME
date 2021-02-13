@@ -16,6 +16,7 @@ void Game::menu()
     std::cout << "*      Welcome to RPG game!!!     *\n";
     std::cout << "*  For playing New Game, enter n. *\n";
     std::cout << "*  For playing Old Game, enter o. *\n";
+    std::cout << "*      For Game Demo, enter d     *\n";
     std::cout << "*  If you want to Exit, enter q.  *\n";
     std::cout << "***********************************\n";
 }
@@ -50,6 +51,10 @@ bool Game::initialization()
             engine = Engine(character_name);
             engine.load();
             break;
+        } else if (init_status == 'd') {
+            Bot bot;
+            bot.demo();
+            menu();
         } else if (init_status == 'q') {
             init = false; // would skip game logic
             break;

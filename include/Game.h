@@ -1,12 +1,14 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "Engine.h"
 
 /**
  * Class for game logic and menu.
  * 
  * */
+#include "../Factory/Characters.h"
+#include "Engine.h"
+#include "Bot.h"
 
 class Game {
 private:
