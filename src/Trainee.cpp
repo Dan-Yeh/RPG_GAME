@@ -1,18 +1,7 @@
 #include "../Factory/Trainee.h"
 #include <fstream>
-
-using namespace CharacterFactory;
-
-void Trainee::save(std::ofstream& out_file) const
-{
-    out_file << get_type_id() << std::endl
-             << name << std::endl
-             << get_level() << std::endl
-             << get_HP() << std::endl
-             << get_maxHP() << std::endl
-             << get_attack_pts() << std::endl
-             << get_defense_pts() << std::endl;
-}
+#include <sstream>
+#include <string>
 
 void Trainee::rest(void)
 {

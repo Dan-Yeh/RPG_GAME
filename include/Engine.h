@@ -27,7 +27,7 @@ public:
     Engine() = default;
     Engine(std::string name);
 
-    std::unique_ptr<CharacterFactory::Trainee> player;
+    std::unique_ptr<Trainee> player;
 
     void save(void);
     void load(void);

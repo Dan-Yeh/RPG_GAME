@@ -1,22 +1,27 @@
 #include "../Factory/Characters.h"
 #include <string>
+#include <vector>
 
 using namespace CharacterFactory;
 
 BaseCharacter::BaseCharacter(std::string n, unsigned int hp)
 {
+    std::cout << "Call here base base method\n";
     name = n;
     HP = (hp > HP) ? HP : hp;
 }
 
-BaseCharacter::BaseCharacter(std::ifstream &file)
+BaseCharacter::BaseCharacter(std::vector<std::string> &members)
 {
-    file >> name
-        >> level
-        >> HP
-        >> max_HP
-        >> attack_pts
-        >> defense_pts;
+    std::cout << "Call here base member method\n";
+    type_id = std::stoi(members.at(0));
+    name = members.at(1);
+    level = std::stoi(members.at(2));
+    std::cout << "Level: " << level << std::endl;
+    HP = std::stoi(members.at(3));
+    max_HP = std::stoi(members.at(4));
+    attack_pts = std::stoi(members.at(5));
+    defense_pts = std::stoi(members.at(6));
 }
 
 std::string BaseCharacter::get_name(void) const { return name; }

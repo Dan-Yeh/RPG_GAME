@@ -3,22 +3,41 @@
 #include <iostream>
 #include <istream>
 #include <memory>
+#include <string>
 
 Engine::Engine(std::string name)
 {
     in_game_day = 0;
     file_name = DIR_PATH + name + ".txt";
-    player = std::make_unique<CharacterFactory::Trainee>(name);
+    player = std::make_unique<Trainee>(name);
 }
 
 void Engine::save(void)
 {
-    CharacterFactory::save(file_name, player, in_game_day);
+    std::ofstream out_file(file_name);
+    if (out_file.is_open()) {
+        out_file << in_game_day << std::endl;
+        out_file << CharacterFactory::serialize(player); 
+        out_file.close();
+    } else {
+        std::cout << "Cannot open the File.\n";
+        std::cout << "Probably at wrong directory.\n";
+    }
 }
 
 void Engine::load(void)
 {
-    auto [player, in_game_day]= CharacterFactory::load(file_name);
+    std::ifstream file(file_name);
+    if (file.peek() == std::ifstream::traits_type::eof()) {
+        std::cout << "The record is empty! Start a new game with this name.\n";
+    } else {
+        std::string player_info;
+        std::vector<std::string> members;
+        file >> in_game_day;
+        file >> player_info;
+        members = CharacterFactory::deserialize(player_info);
+        std::unique_ptr<Trainee> player = CharacterFactory::create_player(members);
+    }
 }
 
 void Engine::rest(void)

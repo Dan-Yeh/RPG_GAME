@@ -2,11 +2,13 @@
 #define FIGHTER_H
 
 #include "Trainee.h"
+#include "../Utilities/utils.h"
 #include <random>
+#include <string>
 #include <time.h>
+#include <vector>
 
 /**
- * In namespace CharacterFactory
  * Class inherited from Trainee.
  * 
  * Implement new version of attack with 
@@ -14,7 +16,6 @@
  *
  * */
 
-namespace CharacterFactory {
 class Fighter : public Trainee {
 private:
     float prob_threshold = 0.8;
@@ -26,16 +27,15 @@ public:
         class_name = "Fighter";
         type_id = 2;
     };
-    Fighter(std::ifstream& file)
-        : Trainee(file)
+    Fighter(std::vector<std::string> &members)
+        : Trainee(members)
     {
         class_name = "Fighter";
-        type_id = 2;
+        std::cout << "Fighter member Constructor\n";
     };
 
     // override methods
     unsigned int attack(void) override;
     bool level_up(void) override;
 };
-}
 #endif

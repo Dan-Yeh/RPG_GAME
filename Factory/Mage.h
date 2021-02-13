@@ -2,16 +2,15 @@
 #define MAGE_H
 
 #include "Trainee.h"
+#include <vector>
 
 /**
- * In namespace CharacterFactory
  * Class inherited from Trainee.
  * 
  * Implement magicversion of attack.
  *
  * */
 
-namespace CharacterFactory {
 class Mage : public Trainee {
 private:
     unsigned int mana = 30;
@@ -27,23 +26,20 @@ public:
         class_name = "Mage";
         type_id = 3;
     };
-    Mage(std::ifstream& file)
-        : Trainee(file)
+    Mage(std::vector<std::string>& members)
+        : Trainee(members)
     {
-        file >> mana
-            >> max_mana
-            >> magic;
-
         class_name = "Mage";
-        type_id = 3;
+        mana = std::stoi(members.at(7));
+        max_mana = std::stoi(members.at(8));
+        magic = std::stoi(members.at(9));
     };
 
     // override methods
     unsigned int attack(void) override;
-    void save(std::ofstream& out_file) const override;
+    //void save(std::ofstream& out_file) const override;
     void rest(void) override;
     void show_status(void) const override;
     bool level_up(void) override;
 };
-}
 #endif

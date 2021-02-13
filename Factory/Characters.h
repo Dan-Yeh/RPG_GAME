@@ -4,9 +4,9 @@
 #include <fstream>
 #include <iostream>
 #include <string>
+#include <vector>
 
 /**
- * In namespace CharacterFactory
  * Base Class for Trainee and Villain.
  * 
  * Implement basic properties and methods possessed 
@@ -16,7 +16,7 @@
 namespace CharacterFactory {
 class BaseCharacter {
 protected:
-    std::string name;
+    std::string name = "default";
     std::string class_name;
     unsigned int type_id;
     unsigned int HP = 20;
@@ -27,8 +27,8 @@ protected:
     unsigned int level = 3;
 
 public:
-    BaseCharacter(std::string n = "default", unsigned int hp = 20);
-    BaseCharacter(std::ifstream& file);
+    BaseCharacter(std::string n, unsigned int);
+    BaseCharacter(std::vector<std::string>&);
 
     std::string get_name(void) const;
     std::string get_class_name(void) const;

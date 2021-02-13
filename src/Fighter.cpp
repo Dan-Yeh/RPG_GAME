@@ -1,13 +1,10 @@
 #include "../Factory/Fighter.h"
 #include <cstdlib>
 
-using namespace CharacterFactory;
-
 unsigned int Fighter::attack(void) 
 {
-    /* initialize random seed: */
-    srand(time(NULL));
-    float times = ((double) rand() / (RAND_MAX)) > prob_threshold ? 1.5 : 1;
+    float prob = RNG::roll_dice();
+    float times = prob > prob_threshold ? 1.5 : 1;
     if (times == 1.5)
         std::cout << "Strike!!!\n";
     return get_attack_pts() * times;

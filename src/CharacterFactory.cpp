@@ -1,36 +1,37 @@
 #include "../Factory/CharacterFactory.h"
+#include <memory>
+#include <sstream>
+#include <string>
 #include <utility>
 
 using namespace CharacterFactory;
 
-void CharacterFactory::save(std::string file_name, std::unique_ptr<Trainee> &player, unsigned int in_game_day)
+std::string CharacterFactory::serialize(std::unique_ptr<Trainee>& player)
 {
-    std::ofstream out_file(file_name);
-    if (out_file.is_open()) {
-        out_file << in_game_day;
-        player->save(out_file);
-        out_file.close();
-    } else {
-        std::cout << "Cannot open the File.\n";
-        std::cout << "Probably at wrong directory.\n";
-    }
+    std::stringstream player_info;
+    player_info << player->get_type_id() << ";"
+                << player->get_name() << ";"
+                << player->get_level() << ";"
+                << player->get_HP() << ";"
+                << player->get_maxHP() << ";"
+                << player->get_attack_pts() << ";"
+                << player->get_defense_pts() << std::endl;
+    return player_info.str();
 }
 
-std::tuple<std::unique_ptr<Trainee>, unsigned int> CharacterFactory::load(std::string file_name)
+std::vector<std::string> CharacterFactory::deserialize(std::string player_info)
 {
-    std::ifstream file(file_name);
-    if (file.peek() == std::ifstream::traits_type::eof()) {
-        std::cout << "The record is empty! Start a new game with this name.\n";
-       return std::make_tuple(nullptr, 0);
-    } else {
-        unsigned int in_game_day;
-        file >> in_game_day; 
-        std::unique_ptr<Trainee> player = create_player(file);
-        return std::make_tuple(std::move(player), in_game_day);
+    std::vector<std::string> members;
+    std::stringstream s_stream(player_info);
+    while (s_stream.good()) {
+        std::string substr;
+        getline(s_stream, substr, ';'); 
+        members.push_back(substr);
     }
+    return members;
 }
 
-std::unique_ptr<Trainee> CharacterFactory::choose_profession(std::unique_ptr<Trainee> &player)
+std::unique_ptr<Trainee> CharacterFactory::choose_profession(std::unique_ptr<Trainee>& player)
 {
     std::cout << "Congrats! Your are now able to choose a profession." << std::endl;
     std::cout << "Press 2 if you want to be a Fighter." << std::endl;
@@ -47,17 +48,17 @@ std::unique_ptr<Trainee> CharacterFactory::choose_profession(std::unique_ptr<Tra
     return create_player(player, type_ID);
 }
 
-std::unique_ptr<Trainee> CharacterFactory::create_player(std::ifstream& file)
+std::unique_ptr<Trainee> CharacterFactory::create_player(std::vector<std::string> &members)
 {
     unsigned int type_id;
-    file >> type_id;
+    type_id = std::stoi(members.at(0));
     switch (type_id) {
     case 1:
-        return std::make_unique<Trainee>(file);
+        return std::make_unique<Trainee>(members);
     case 2:
-        return std::make_unique<Fighter>(file);
+        return std::make_unique<Fighter>(members);
     case 3:
-        return std::make_unique<Mage>(file);
+        return std::make_unique<Mage>(members);
     default:
         std::cout << "Wrong ID! Please restart the game." << std::endl;
         break;
@@ -84,4 +85,3 @@ std::unique_ptr<Trainee> CharacterFactory::create_player(std::unique_ptr<Trainee
     }
     return nullptr;
 }
- 

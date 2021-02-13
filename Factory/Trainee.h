@@ -5,7 +5,6 @@
 #include <fstream>
 
 /**
- * In namespace CharacterFactory
  * Class inherited from BaseCharacter
  * Class for Trainee and Base class for Mage and Fighter.
  * 
@@ -13,8 +12,7 @@
  * by all players in game.
  *
  * */
-namespace CharacterFactory {
-class Trainee : public BaseCharacter {
+class Trainee : public CharacterFactory::BaseCharacter {
 protected:
     unsigned int transfer_level = 5;
 
@@ -25,19 +23,17 @@ public:
         class_name = "Trainee";
         type_id = 1;
     }
-    Trainee(std::ifstream& file)
-        : BaseCharacter(file)
+    Trainee(std::vector<std::string> &members)
+        : BaseCharacter(members)
     {
         class_name = "Trainee";
-        type_id = 1;
+        std::cout << "Trainee Constructor\n";
     }
 
     //override methods
 
     //abstract method
-    virtual void save(std::ofstream& out_file) const;
     virtual void rest(void);
     virtual bool level_up(void);
 };
-}
 #endif
