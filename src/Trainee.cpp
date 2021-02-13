@@ -5,7 +5,7 @@
 
 void Trainee::show_status(void) const
 {
-    std::cout << "Name: " << name << std::endl;
+    std::cout << "Name: " << get_name() << std::endl;
     std::cout << "Profession: " << get_class_name()<< std::endl;
     std::cout << "Level: " << get_level() << std::endl;
     std::cout << "Current HP is " << get_HP() << std::endl;

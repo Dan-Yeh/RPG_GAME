@@ -17,7 +17,7 @@ void Engine::save(void)
     std::ofstream out_file(file_name);
     if (out_file.is_open()) {
         out_file << in_game_day << std::endl;
-        out_file << CharacterFactory::serialize(player); 
+        out_file << CharacterFactory::serialize(player);
         out_file.close();
     } else {
         std::cout << "Cannot open the File.\n";
@@ -36,7 +36,8 @@ void Engine::load(void)
         file >> in_game_day;
         file >> player_info;
         members = CharacterFactory::deserialize(player_info);
-        std::unique_ptr<Trainee> player = CharacterFactory::create_player(members);
+        //std::unique_ptr<Trainee> player = CharacterFactory::create_player(members);
+        player = CharacterFactory::create_player(members);
     }
 }
 
@@ -53,14 +54,14 @@ void Engine::fight()
     //enemy->show_status();
     unsigned int player_sub_HP, enemy_sub_HP;
     while (true) {
-        player_sub_HP = player->sub_HP(enemy->attack(),player->defend());
+        player_sub_HP = player->sub_HP(enemy->attack(), player->defend());
         std::cout << "\nYou've been attack! Lose " << player_sub_HP << " hp.";
         std::cout << "\tCurrent hp: " << player->get_HP() << std::endl;
         if (!player->isAlive()) {
             std::cout << "You're defeated!\n";
             break;
         }
-        enemy_sub_HP = enemy->sub_HP(player->attack(),enemy->defend());
+        enemy_sub_HP = enemy->sub_HP(player->attack(), enemy->defend());
         std::cout << "Fight back! The Gobelin loses " << enemy_sub_HP << " hp.\n";
         if (!enemy->isAlive()) {
             std::string n = enemy->get_name();
@@ -83,4 +84,3 @@ void Engine::level_up(void)
     if (player->level_up())
         player = CharacterFactory::choose_profession(player);
 }
-

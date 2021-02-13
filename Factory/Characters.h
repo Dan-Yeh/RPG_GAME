@@ -24,7 +24,7 @@ protected:
     unsigned int attack_pts = 5;
     unsigned int defense_pts = 3;
     //TODO:4 for test, remember change to 1 after fix bug
-    unsigned int level = 3;
+    unsigned int level = 4;
 
 public:
     BaseCharacter(std::string n, unsigned int);

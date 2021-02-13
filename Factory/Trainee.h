@@ -13,7 +13,7 @@
  *
  * */
 class Trainee : public CharacterFactory::BaseCharacter {
-protected:
+private:
     unsigned int transfer_level = 5;
 
 public:
@@ -27,7 +27,6 @@ public:
         : BaseCharacter(members)
     {
         class_name = "Trainee";
-        std::cout << "Trainee Constructor\n";
     }
 
     //override methods

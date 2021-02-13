@@ -40,7 +40,6 @@ public:
     unsigned int get_magic_pts(void);
     // override methods
     unsigned int attack(void) override;
-    //void save(std::ofstream& out_file) const override;
     void rest(void) override;
     void show_status(void) const override;
     bool level_up(void) override;

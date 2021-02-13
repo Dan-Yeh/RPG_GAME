@@ -6,18 +6,15 @@ using namespace CharacterFactory;
 
 BaseCharacter::BaseCharacter(std::string n, unsigned int hp)
 {
-    std::cout << "Call here base base method\n";
     name = n;
     HP = (hp > HP) ? HP : hp;
 }
 
-BaseCharacter::BaseCharacter(std::vector<std::string> &members)
+BaseCharacter::BaseCharacter(std::vector<std::string>& members)
 {
-    std::cout << "Call here base member method\n";
     type_id = std::stoi(members.at(0));
     name = members.at(1);
     level = std::stoi(members.at(2));
-    std::cout << "Level: " << level << std::endl;
     HP = std::stoi(members.at(3));
     max_HP = std::stoi(members.at(4));
     attack_pts = std::stoi(members.at(5));
@@ -42,7 +39,7 @@ unsigned int BaseCharacter::get_level(void) const { return level; }
 
 unsigned int BaseCharacter::sub_HP(unsigned int attack_pts, unsigned int defense_pts)
 {
-    unsigned int lose = attack_pts > defense_pts ? attack_pts-defense_pts : 0;
+    unsigned int lose = attack_pts > defense_pts ? attack_pts - defense_pts : 0;
     HP = (lose > HP) ? 0 : (HP - lose);
     return lose;
 }
@@ -53,4 +50,3 @@ bool BaseCharacter::isAlive(void) { return (get_HP() > 0); }
 
 // abstract methods
 unsigned int BaseCharacter::attack(void) { return get_attack_pts(); }
-

@@ -31,7 +31,6 @@ public:
         : Trainee(members)
     {
         class_name = "Fighter";
-        std::cout << "Fighter member Constructor\n";
     };
 
     // override methods
