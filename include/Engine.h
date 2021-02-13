@@ -5,7 +5,7 @@
 #include "../Factory/Mage.h"
 #include "../Factory/Trainee.h"
 #include "../Factory/Villain.h"
-#include "../Factory/Utility.h"
+#include "../Factory/CharacterFactory.h"
 #include <fstream>
 #include <iostream>
 #include <memory>
@@ -28,8 +28,6 @@ public:
     Engine(std::string name);
 
     std::unique_ptr<CharacterFactory::Trainee> player;
-    //std::unique_ptr<CharacterFactory::Trainee> create_player(std::ifstream& file);
-    //std::unique_ptr<CharacterFactory::Trainee> create_player(unsigned int type_id);
 
     void save(void);
     void load(void);

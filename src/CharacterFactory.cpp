@@ -1,4 +1,4 @@
-#include "../Factory/Utility.h"
+#include "../Factory/CharacterFactory.h"
 #include <utility>
 
 using namespace CharacterFactory;
@@ -21,12 +21,12 @@ std::tuple<std::unique_ptr<Trainee>, unsigned int> CharacterFactory::load(std::s
     std::ifstream file(file_name);
     if (file.peek() == std::ifstream::traits_type::eof()) {
         std::cout << "The record is empty! Start a new game with this name.\n";
-        return std::make_tuple(nullptr, 0);
+       return std::make_tuple(nullptr, 0);
     } else {
         unsigned int in_game_day;
         file >> in_game_day; 
         std::unique_ptr<Trainee> player = create_player(file);
-        return std::make_tuple(player, in_game_day);
+        return std::make_tuple(std::move(player), in_game_day);
     }
 }
 
@@ -84,3 +84,4 @@ std::unique_ptr<Trainee> CharacterFactory::create_player(std::unique_ptr<Trainee
     }
     return nullptr;
 }
+ 
