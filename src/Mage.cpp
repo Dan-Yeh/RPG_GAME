@@ -44,3 +44,7 @@ bool Mage::level_up()
     show_status();
     return false;
 }
+
+unsigned int Mage::get_mana(void) { return mana; }
+unsigned int Mage::get_max_mana(void) { return max_mana; }
+unsigned int Mage::get_magic_pts(void) { return magic; }

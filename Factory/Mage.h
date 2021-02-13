@@ -35,6 +35,9 @@ public:
         magic = std::stoi(members.at(9));
     };
 
+    unsigned int get_mana(void);
+    unsigned int get_max_mana(void);
+    unsigned int get_magic_pts(void);
     // override methods
     unsigned int attack(void) override;
     //void save(std::ofstream& out_file) const override;

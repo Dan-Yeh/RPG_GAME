@@ -11,7 +11,6 @@
  *
  * */
 
-namespace CharacterFactory {
 class Villain : public CharacterFactory::BaseCharacter {
 public:
     Villain(std::string n = "Villain", unsigned int hp = 20)
@@ -29,5 +28,4 @@ public:
         level += num;
     }
 };
-}
 #endif

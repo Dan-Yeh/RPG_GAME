@@ -48,9 +48,9 @@ void Engine::rest(void)
 
 void Engine::fight()
 {
-    std::unique_ptr<CharacterFactory::Villain> enemy = std::make_unique<CharacterFactory::Villain>("Gobelin", 15);
+    std::unique_ptr<Villain> enemy = std::make_unique<Villain>("Gobelin", 15);
     std::cout << "\nA Gobelin appears\n";
-    enemy->show_status();
+    //enemy->show_status();
     unsigned int player_sub_HP, enemy_sub_HP;
     while (true) {
         player_sub_HP = player->sub_HP(enemy->attack(),player->defend());

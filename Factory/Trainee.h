@@ -35,5 +35,6 @@ public:
     //abstract method
     virtual void rest(void);
     virtual bool level_up(void);
+    virtual void show_status(void) const;
 };
 #endif

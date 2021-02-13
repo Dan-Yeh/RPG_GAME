@@ -45,7 +45,6 @@ public:
     // abstract methods
     virtual ~BaseCharacter() {};
     virtual unsigned int attack(void);
-    virtual void show_status(void) const;
 };
 }
 #endif
