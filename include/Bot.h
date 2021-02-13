@@ -12,7 +12,7 @@ private:
     void fighter_demo();
 
 public:
-    Bot() = default;
+    Bot();
     void demo();
 };
 
