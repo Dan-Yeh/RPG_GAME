@@ -23,8 +23,7 @@ protected:
     unsigned int max_HP = 20;
     unsigned int attack_pts = 5;
     unsigned int defense_pts = 3;
-    //TODO:4 for test, remember change to 1 after fix bug
-    unsigned int level = 4;
+    unsigned int level = 1;
 
 public:
     BaseCharacter(std::string n, unsigned int);
@@ -45,6 +44,7 @@ public:
     // abstract methods
     virtual ~BaseCharacter() {};
     virtual unsigned int attack(void);
+    virtual void show_status(void) const;
 };
 }
 #endif

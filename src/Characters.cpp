@@ -21,6 +21,16 @@ BaseCharacter::BaseCharacter(std::vector<std::string>& members)
     defense_pts = std::stoi(members.at(6));
 }
 
+void BaseCharacter::show_status(void) const
+{
+    std::cout << "Name: " << get_name() << std::endl;
+    std::cout << "Profession: " << get_class_name()<< std::endl;
+    std::cout << "Level: " << get_level() << std::endl;
+    std::cout << "Current HP is " << get_HP() << std::endl;
+    std::cout << "Attack points: " << get_attack_pts() << std::endl;
+    std::cout << "Defense points: " << get_defense_pts() << std::endl;
+}
+
 std::string BaseCharacter::get_name(void) const { return name; }
 
 std::string BaseCharacter::get_class_name(void) const { return class_name; }

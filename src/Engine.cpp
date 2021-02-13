@@ -36,7 +36,6 @@ void Engine::load(void)
         file >> in_game_day;
         file >> player_info;
         members = CharacterFactory::deserialize(player_info);
-        //std::unique_ptr<Trainee> player = CharacterFactory::create_player(members);
         player = CharacterFactory::create_player(members);
     }
 }
@@ -51,7 +50,7 @@ void Engine::fight()
 {
     std::unique_ptr<Villain> enemy = std::make_unique<Villain>("Gobelin", 15);
     std::cout << "\nA Gobelin appears\n";
-    //enemy->show_status();
+    enemy->show_status();
     unsigned int player_sub_HP, enemy_sub_HP;
     while (true) {
         player_sub_HP = player->sub_HP(enemy->attack(), player->defend());
