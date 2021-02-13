@@ -7,6 +7,7 @@
  * */
 #include "Characters.h"
 #include "Engine.h"
+#include "Bot.h"
 
 class Game {
 private:
