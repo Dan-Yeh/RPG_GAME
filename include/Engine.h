@@ -21,13 +21,13 @@
 class Engine {
 private:
     std::string file_name;
-    unsigned int in_game_day = 0;
 
 public:
     Engine() = default;
     Engine(std::string name);
 
     std::unique_ptr<Trainee> player;
+    unsigned int in_game_day = 0;
 
     void save(void);
     void load(void);

@@ -1,5 +1,4 @@
 #include "../Factory/Fighter.h"
-#include <cstdlib>
 
 unsigned int Fighter::attack(void) 
 {
