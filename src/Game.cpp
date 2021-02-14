@@ -37,9 +37,10 @@ bool Game::initialization()
 {
     bool init = true;
 #ifdef TEST
-    std::cout << "*****Welcome to Demo Mode!!!*****\n";
-    bot_flag = true;
-    std::string character_name = "Dan";
+    std::cout << "*****Welcome to Test Mode!!!*****\n";
+    std::string character_name;
+    std::cout << "Please input a character name: " << std::endl;
+    std::cin >> character_name;
     engine = Engine(character_name);
 #else
     while (true) {
@@ -59,10 +60,9 @@ bool Game::initialization()
             break;
         } else if (init_status == 'd') {
             std::cout << "*****Welcome to Demo Mode!!!*****\n";
-            std::string behavior = "n Dan";
-            std::istringstream iss(behavior);
+            std::string behavior = bot.behavior_f1;
+            iss.str(behavior);
             std::cin.rdbuf(iss.rdbuf());
-            bot_flag = true;
             continue;
         } else if (init_status == 'q') {
             init = false; // would skip game logic
@@ -77,11 +77,6 @@ bool Game::initialization()
 
 void Game::game_loop()
 {
-    if (bot_flag) {
-        std::string behavior = bot.behavior_f1;
-        std::istringstream iss(behavior);
-        std::cin.rdbuf(iss.rdbuf());
-    }
     /*Playing game*/
     while (engine.player->isAlive()) {
         behavior_options();
@@ -102,10 +97,10 @@ void Game::game_loop()
         } else if (action == "q") {
             // auto save when exit game loop
             engine.save();
+            std::cout << "See you next time!\n";
             break;
         } else {
             std::cout << "Invalid Input! Please Try again!\n";
-            std::cout << "Your Input is: " << action << std::endl;
         }
     }
 
