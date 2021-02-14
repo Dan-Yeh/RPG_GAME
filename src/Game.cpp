@@ -41,9 +41,13 @@ void Game::initialization(unsigned int num)
     std::cout << "*****Welcome to Test Mode!!!*****\n";
     iss.str(bot.behaviors[num]);
     std::cin.rdbuf(iss.rdbuf());
+    char init_status;
     std::string character_name;
+    std::cin >> init_status;
     std::cin >> character_name;
     engine = Engine(character_name);
+    if (init_status == 'o')
+        engine.load();
 }
 #else
 bool Game::initialization()

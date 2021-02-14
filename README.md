@@ -1,17 +1,22 @@
-Changelog
-=========
+Usage
+=====
+Please enter following commands in build directory for distinct purposes.
 
-v3
---
+Compile executable
+--------------------------
+```
+make clean
+make
+```
 
-* BaseClass: added level to the stats
-* Added a levelUp mechanic, level up after each fight and increase stats a bit depending on the current level and class
-* Added new playable RPG classes: player starts as Trainee, can become Mage or Warrior after a certain level cap, see class description below
-* Moved all playable classes definitions and the CharacterFactory to a new project subfolder
-* Modified the CharacterFactory and save/load function to accommodate for new classes
-* Added a new RNG namespace with a rollDice function to generate random roll dices (see Warrior's critical strikes)
-* When fighting, ask the attacker for its damage instead of just using his attack stat (see Warrior and Mage).
-
+Compile TEST executable
+--------------------------
+```
+make clean
+make gprof
+./RPG_GAME
+gprof ./RPG_GAME gmon.out > report.txt
+```
 
 Features
 ========
@@ -105,25 +110,3 @@ It uses the CharacterFactory to serialize/deserialize a player character.
 
 * Saving: ask the player for the save file name and store the game state in it. Override existing save if already existing.
 * Loading: ask the player for a save file name and load it.
-
-
-Old Changelog
-=============
-
-v1
---
-
-* v1 of the game features
-* Makefile: `make` to build the application (by default `miniRPG`), `make clean` to clean
-
-
-v2
---
-
-* moved the source to src/ and saves to saves/
-* Encapsulated the Engine in a class
-* Introduced a Rest mechanic in the main game loop to restore HP
-* Introduced a day counter (int) in the Engine to count how many in game day passed (fight and rest increase the day counter)
-* Introduced BaseClass for the game characters, refactored the player to use be an instance of this class (using unique_ptr)
-* Introduced CharacterFactory namespace and functions to create characters and serialize/deserialize them
-* Modified the save/load function to save/load the engine state (dayCounter and player, using the CharacterFactory)

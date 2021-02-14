@@ -10,9 +10,10 @@ int main()
 #ifdef TEST
     unsigned int i = 0;
     unsigned int loop_num = game.bot.behaviors.size();
-    while (i++ < loop_num) {
+    while (i < loop_num) {
         game.initialization(i);
         game.game_loop();
+        i++;
     }
 #else
     if (game.initialization() == true) 
