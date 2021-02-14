@@ -17,7 +17,6 @@ private:
     std::string action;
     Engine engine;
     //Bot and iss for demo
-    Bot bot;
     std::istringstream iss;
 
     void menu();
@@ -25,6 +24,7 @@ private:
 
 public:
     Game();
+    Bot bot;
 #ifdef TEST
     void initialization(unsigned int num);
 #else

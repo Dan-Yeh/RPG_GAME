@@ -40,10 +40,10 @@ void Game::initialization(unsigned int num)
 {
     std::cout << "*****Welcome to Test Mode!!!*****\n";
     iss.str(bot.behaviors[num]);
+    std::cin.rdbuf(iss.rdbuf());
     std::string character_name;
     std::cin >> character_name;
     engine = Engine(character_name);
-    return true;
 }
 #else
 bool Game::initialization()

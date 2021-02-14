@@ -1,7 +1,9 @@
 ##add memory check /test / debug command
 #CMake
-CXX = g++ 
-CXXFLAGS = --std=c++17 -Wall
+gprof: export EXTRA_CXXFLAGS := -D TEST -pg
+
+CXX = g++
+CXXFLAGS = --std=c++17 -Wall $(EXTRA_CXXFLAGS)
 
 #location of files
 SRC = ../src
@@ -23,13 +25,14 @@ build: $(OBJECTS) $(HEADERS)
 	echo $(OBJECTS)
 	$(CXX) -o $(GAME_NAME) $(CXXFLAGS) $(OBJECTS)
 
+gprof: $(OBJECTS) $(HEADERS)
+	mkdir -p ${SAVEFOLDER}
+	echo $(OBJECTS)
+	$(CXX) -o $(GAME_NAME) $(CXXFLAGS) $(OBJECTS)
+
 $(OBJ_DIR)/%.o: $(SRC)/%.cpp
 	mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) -c $< -o $@ 
-
-gprof:
-	$(CXX) -pg -o $(GAME_NAME) $(CXXFLAGS) $(OBJECTS) -DTEST
-	../GAME_NAME
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(OBJ_DIR)
