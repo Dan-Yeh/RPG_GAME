@@ -14,9 +14,9 @@ int main()
         game.initialization(i);
         game.game_loop();
     }
-#endif
+#else
     if (game.initialization() == true) 
         game.game_loop();
-
+#endif
     return 0;
 }
