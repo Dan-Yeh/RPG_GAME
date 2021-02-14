@@ -27,6 +27,10 @@ $(OBJ_DIR)/%.o: $(SRC)/%.cpp
 	mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@ 
 
+gprof:
+	$(CXX) -pg -o $(GAME_NAME) $(CXXFLAGS) $(OBJECTS) -DTEST
+	../GAME_NAME
+
 clean:
 	rm -rf $(OBJ_DIR)
 	rm -rf ${SAVEFOLDER}

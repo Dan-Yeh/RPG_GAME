@@ -36,14 +36,12 @@ void Game::behavior_options()
 bool Game::initialization()
 {
     bool init = true;
-#ifdef TEST
-    std::cout << "*****Welcome to Demo Mode!!!*****\n";
-    bot_flag = true;
-    std::string character_name = "Dan";
-    engine = Engine(character_name);
-#else
     while (true) {
+#ifndef TEST
+        init_status = 'd'; 
+#else
         std::cin >> init_status;
+#endif
         if (init_status == 'n') {
             std::string character_name;
             std::cout << "Please input a character name: " << std::endl;
@@ -70,7 +68,6 @@ bool Game::initialization()
         } else
             std::cout << "Invalid Input! Please Try again!\n";
     }
-#endif
 
     return init;
 }
