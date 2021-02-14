@@ -14,6 +14,11 @@ Compile TEST executable
 ```
 make clean
 make gprof
+```
+
+Generate profile report
+```
+cd ..
 ./RPG_GAME
 gprof ./RPG_GAME gmon.out > report.txt
 ```

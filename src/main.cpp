@@ -2,6 +2,9 @@
 #include "../include/Game.h"
 #include <fstream>
 #include <memory>
+#include <chrono>
+#include <thread>
+#include <unistd.h>
 
 int main()
 {
@@ -14,6 +17,7 @@ int main()
         game.initialization(i);
         game.game_loop();
         i++;
+        sleep(5);
     }
 #else
     if (game.initialization() == true) 
