@@ -33,16 +33,22 @@ void Game::behavior_options()
     std::cout << "****************************************\n";
 }
 
+#ifdef TEST
+//For grof test perfomance of program
+////not include in release version
+void Game::initialization(unsigned int num)
+{
+    std::cout << "*****Welcome to Test Mode!!!*****\n";
+    iss.str(bot.behaviors[num]);
+    std::string character_name;
+    std::cin >> character_name;
+    engine = Engine(character_name);
+    return true;
+}
+#else
 bool Game::initialization()
 {
     bool init = true;
-#ifdef TEST
-    std::cout << "*****Welcome to Test Mode!!!*****\n";
-    std::string character_name;
-    std::cout << "Please input a character name: " << std::endl;
-    std::cin >> character_name;
-    engine = Engine(character_name);
-#else
     while (true) {
         std::cin >> init_status;
         if (init_status == 'n') {
@@ -70,10 +76,9 @@ bool Game::initialization()
         } else
             std::cout << "Invalid Input! Please Try again!\n";
     }
-#endif
-
     return init;
 }
+#endif
 
 void Game::game_loop()
 {

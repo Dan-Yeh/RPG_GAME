@@ -14,7 +14,7 @@
 class Game {
 private:
     char init_status;
-    std::string action; 
+    std::string action;
     Engine engine;
     //Bot and iss for demo
     Bot bot;
@@ -25,7 +25,11 @@ private:
 
 public:
     Game();
+#ifdef TEST
+    void initialization(unsigned int num);
+#else
     bool initialization();
+#endif
     void game_loop();
 };
 
