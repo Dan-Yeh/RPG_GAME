@@ -59,7 +59,9 @@ std::unique_ptr<Trainee> CharacterFactory::choose_profession(std::unique_ptr<Tra
         if (std::isdigit(type_id))
             break;
         else
-            std::cout << "Please type digits!" << std::endl;
+            break;
+        std::cout << "Please type digits!" << std::endl;
+        std::cout << "Your Input of digit: " << type_id << std::endl;
     }
     unsigned int type_ID = static_cast<unsigned int>(type_id - '0');
     return create_player(player, type_ID);
