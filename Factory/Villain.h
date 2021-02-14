@@ -21,9 +21,9 @@ public:
         /* Random generate skill points*/
         unsigned int num =  RNG::roll_dice() * 5 + 1;
         name += std::string(num, 'V');
-        HP = HP / 2 + num;
-        max_HP = max_HP / 2 + num;
-        attack_pts = attack_pts / 2 + num;
+        HP = HP / 3 + num;
+        max_HP = max_HP / 3 + num;
+        attack_pts = attack_pts / 3 + num;
         //defense_pts += num;
         level += num;
     }

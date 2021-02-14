@@ -1,8 +1,8 @@
+#include "../include/Game.h"
 #include "../Factory/Trainee.h"
 #include "../Factory/Villain.h"
 #include "../include/Engine.h"
-#include "../include/Game.h"
-
+#include <iostream>
 
 Game::Game()
 {
@@ -52,9 +52,11 @@ bool Game::initialization()
             engine.load();
             break;
         } else if (init_status == 'd') {
-            Bot bot;
-            bot.select_demo();
-            menu();
+            std::cout << "*****Welcome to Demo Mode!!!*****\n";
+            std::string behavior = "n Dan";
+            std::istringstream iss(behavior);
+            std::cin.rdbuf(iss.rdbuf());
+            bot_flag = true;
             continue;
         } else if (init_status == 'q') {
             init = false; // would skip game logic
@@ -68,12 +70,16 @@ bool Game::initialization()
 
 void Game::game_loop()
 {
+    if (bot_flag) {
+        std::string behavior = bot.behavior_f1;
+        std::istringstream iss(behavior);
+        std::cin.rdbuf(iss.rdbuf());
+    }
     /*Playing game*/
     while (engine.player->isAlive()) {
         behavior_options();
         std::cin >> action;
         if (action == "fight") {
-            //TODO: why fight not in Engine?
             engine.fight();
             continue;
         } else if (action == "rest") {
