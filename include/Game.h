@@ -1,31 +1,36 @@
-//TODO desstructor to autosave file
 #ifndef GAME_H
 #define GAME_H
 
-#include "Characters.h"
-#include <fstream>
-#include <iostream>
-#include <memory>
-#include <string>
-#define DIR_PATH "./saves/"
+#include "../Factory/Characters.h"
+#include "Bot.h"
+#include "Engine.h"
+#include <sstream>
+
+/**
+ * Class for game logic and menu.
+ * 
+ * */
 
 class Game {
 private:
-    std::string file_name;
-    unsigned int in_game_day = { 0 };
+    char init_status;
+    std::string action;
+    Engine engine;
+    //Bot and iss for demo
+    std::istringstream iss;
+
+    void menu();
+    void behavior_options();
 
 public:
-    std::unique_ptr<BaseCharacter> player;
-
     Game();
-    Game(std::string name = "default");
-    void save(void);
-    void load(void);
-    void rest(void);
-    void show(void);
-    //unique_ptr could not pass to operator<< for now
-    //friend std::ostream& operator<<(std::ostream& out, BaseCharacter const & player);
-    //friend std::istream& operator>>(std::istream& in, BaseCharacter& player);
+    Bot bot;
+#ifdef TEST
+    void initialization(unsigned int num);
+#else
+    bool initialization();
+#endif
+    void game_loop();
 };
 
 #endif

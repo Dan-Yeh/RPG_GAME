@@ -1,56 +1,119 @@
-#include "../include/Characters.h"
 #include "../include/Game.h"
+#include "../Factory/Trainee.h"
+#include "../Factory/Villain.h"
+#include "../include/Engine.h"
+#include <iostream>
 
-Game::Game(std::string name)
+Game::Game()
 {
-    in_game_day = 0;
-    file_name = DIR_PATH + name + ".txt";
-    player = std::make_unique<BaseCharacter>(name);
+    menu();
 }
 
-void Game::save(void)
+void Game::menu()
 {
-    std::ofstream out_file(file_name);
-    if (out_file.is_open()) {
-        out_file << player->get_name() << std::endl
-                 << player->get_HP() << std::endl
-                 << player->get_maxHP() << std::endl
-                 << player->get_attack_pts() << std::endl
-                 << player->get_defense_pts() << std::endl;
-        out_file.close();
-    } else {
-        std::cout << "Cannot open the File.\n";
+    /*Initailize*/
+    std::cout << "***********************************\n";
+    std::cout << "*      Welcome to RPG game!!!     *\n";
+    std::cout << "*  For playing New Game, enter n. *\n";
+    std::cout << "*  For playing Old Game, enter o. *\n";
+    std::cout << "*      For Game Demo, enter d.    *\n";
+    std::cout << "*  If you want to Exit, enter q.  *\n";
+    std::cout << "***********************************\n";
+}
+
+void Game::behavior_options()
+{
+    std::cout << "****************************************\n";
+    std::cout << "*            Game Instructions         *\n";
+    std::cout << "*          To fight, enter fight.      *\n";
+    std::cout << "*      To heal player, enter rest.     *\n";
+    std::cout << "*  To show current status, enter show. *\n";
+    std::cout << "*  To save current status, enter save. *\n";
+    std::cout << "*      If you want to Exit, enter q.   *\n";
+    std::cout << "****************************************\n";
+}
+
+#ifdef TEST
+//For grof test perfomance of program
+////not include in release version
+void Game::initialization(unsigned int num)
+{
+    std::cout << "*****Welcome to Test Mode!!!*****\n";
+    iss.str(bot.behaviors[num]);
+    std::cin.rdbuf(iss.rdbuf());
+    char init_status;
+    std::string character_name;
+    std::cin >> init_status;
+    std::cin >> character_name;
+    engine = Engine(character_name);
+    if (init_status == 'o')
+        engine.load();
+}
+#else
+bool Game::initialization()
+{
+    bool init = true;
+    while (true) {
+        std::cin >> init_status;
+        if (init_status == 'n') {
+            std::string character_name;
+            std::cout << "Please input a character name: " << std::endl;
+            std::cin >> character_name;
+            engine = Engine(character_name);
+            break;
+        } else if (init_status == 'o') {
+            std::string character_name;
+            std::cout << "Please input a character name(also is your file name): " << std::endl;
+            std::cin >> character_name;
+            engine = Engine(character_name);
+            engine.load();
+            break;
+        } else if (init_status == 'd') {
+            std::cout << "*****Welcome to Demo Mode!!!*****\n";
+            std::string behavior = bot.behavior_f1;
+            iss.str(behavior);
+            std::cin.rdbuf(iss.rdbuf());
+            continue;
+        } else if (init_status == 'q') {
+            init = false; // would skip game logic
+            break;
+        } else
+            std::cout << "Invalid Input! Please Try again!\n";
+    }
+    return init;
+}
+#endif
+
+void Game::game_loop()
+{
+    /*Playing game*/
+    while (engine.player->isAlive()) {
+        behavior_options();
+        std::cin >> action;
+        if (action == "fight") {
+            engine.fight();
+            continue;
+        } else if (action == "rest") {
+            engine.rest();
+            continue;
+        } else if (action == "show") {
+            engine.show();
+            continue;
+        } else if (action == "save") {
+            engine.save();
+            std::cout << "Successfully Saved!\n";
+            continue;
+        } else if (action == "q") {
+            // auto save when exit game loop
+            engine.save();
+            std::cout << "See you next time!\n";
+            break;
+        } else {
+            std::cout << "Invalid Input! Please Try again!\n";
+        }
+    }
+
+    if (!engine.player->isAlive()) {
+        std::cout << "You died!\n";
     }
 }
-
-void Game::load(void)
-{
-    std::unique_ptr<BaseCharacter> player;
-    std::ifstream file(file_name);
-    if (file.peek() == std::ifstream::traits_type::eof()) {
-        std::cout << "The record is empty! Start a new game with this name.\n";
-    } else {
-        player = std::make_unique<BaseCharacter>(file);
-    }
-}
-
-void Game::rest(void){
-    in_game_day++;
-    player->rest();
-}
-
-void Game::show(void) {
-    std::cout << "In game day is: " << in_game_day << " days.\n";
-    player->show_status();
-}
-
-//\std::ostream& operator<<(std::ostream& out, BaseCharacter& player)
-//\{
-//\    out << player.get_name() << std::endl
-//\        << player.get_HP() << std::endl
-//\        << player.get_maxHP() << std::endl
-//\        << player.get_attack_pts() << std::endl
-//\        << player.get_defense_pts() << std::endl
-//\        << player.get_in_game_day() << std::endl;
-//\    return out;
-//\}
